@@ -1,0 +1,97 @@
+<header class="header" [class.header--scrolled]="isScrolled()">
+  <div class="container header__inner">
+
+    <!-- Logo -->
+    <a routerLink="/" class="header__logo" (click)="closeMobile()">
+      <span class="logo__text">Pacto<span class="logo__accent">RH</span></span>
+    </a>
+
+    <!-- Nav desktop -->
+    <nav class="header__nav" aria-label="Navegação principal">
+      @for (link of navLinks; track link.label) {
+        <div class="nav-item" [class.nav-item--dropdown]="link.children">
+
+          @if (!link.children) {
+            <a
+              [routerLink]="link.href"
+              routerLinkActive="nav-link--active"
+              [routerLinkActiveOptions]="{ exact: link.href === '/' }"
+              class="nav-link"
+              (click)="closeMobile()"
+            >
+              {{ link.label }}
+            </a>
+          } @else {
+            <button
+              class="nav-link nav-link--has-dropdown"
+              (click)="toggleDropdown(link.label)"
+            >
+              {{ link.label }}
+              <i class="fas fa-chevron-down nav-link__icon"
+                 [class.nav-link__icon--open]="activeDropdown() === link.label">
+              </i>
+            </button>
+
+            <div class="dropdown" [class.dropdown--open]="activeDropdown() === link.label">
+              @for (child of link.children; track child.label) {
+                <a [routerLink]="child.href" class="dropdown__item" (click)="closeMobile()">
+                  {{ child.label }}
+                </a>
+              }
+            </div>
+          }
+
+        </div>
+      }
+    </nav>
+
+    <!-- CTA desktop -->
+    <a routerLink="/contato" class="btn btn--primary btn--sm header__cta">
+      Fale Conosco
+    </a>
+
+    <!-- Botão hamburger (mobile) -->
+    <button
+      class="header__hamburger"
+      (click)="toggleMobile()"
+      [attr.aria-expanded]="isMobileOpen()"
+      aria-label="Abrir menu"
+    >
+      <span [class.open]="isMobileOpen()"></span>
+      <span [class.open]="isMobileOpen()"></span>
+      <span [class.open]="isMobileOpen()"></span>
+    </button>
+
+  </div>
+
+  <!-- Menu mobile -->
+  <nav class="mobile-menu" [class.mobile-menu--open]="isMobileOpen()">
+    <div class="container">
+      @for (link of navLinks; track link.label) {
+        <a
+          [routerLink]="link.href"
+          class="mobile-menu__link"
+          (click)="closeMobile()"
+        >
+          {{ link.label }}
+        </a>
+
+        @if (link.children) {
+          @for (child of link.children; track child.label) {
+            <a
+              [routerLink]="child.href"
+              class="mobile-menu__link mobile-menu__link--sub"
+              (click)="closeMobile()"
+            >
+              {{ child.label }}
+            </a>
+          }
+        }
+      }
+
+      <a routerLink="/contato" class="btn btn--primary w-full" style="justify-content:center; margin-top: 1rem;" (click)="closeMobile()">
+        Fale Conosco
+      </a>
+    </div>
+  </nav>
+</header>
