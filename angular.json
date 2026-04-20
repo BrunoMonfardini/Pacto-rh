@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pacto-rh-temp": {
+    "pacto-rh": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/pacto-rh-temp",
+            "outputPath": "dist/pacto-rh",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -26,9 +26,11 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/favicon.ico",
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
@@ -64,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "pacto-rh-temp:build:production"
+              "buildTarget": "pacto-rh:build:production"
             },
             "development": {
-              "buildTarget": "pacto-rh-temp:build:development"
+              "buildTarget": "pacto-rh:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,9 +87,11 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/favicon.ico",
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
