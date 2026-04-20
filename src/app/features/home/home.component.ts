@@ -1,4 +1,13 @@
-// src/app/features/home/home.component.ts
 import { Component } from '@angular/core';
-@Component({ selector: 'app-home', standalone: true, template: `<p>Home — em breve</p>` })
+import { HeroComponent } from './components/hero.component';
+
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  imports: [HeroComponent],
+  template: `
+    <app-hero />
+    <!-- Próximos componentes vêm aqui -->
+  `,
+})
 export class HomeComponent {}

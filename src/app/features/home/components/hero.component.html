@@ -1,0 +1,83 @@
+<section class="hero">
+  <!-- Fundo com gradiente -->
+  <div class="hero__bg">
+    <div class="hero__overlay"></div>
+    <!-- Formas decorativas -->
+    <div class="hero__shape hero__shape--1"></div>
+    <div class="hero__shape hero__shape--2"></div>
+    <div class="hero__shape hero__shape--3"></div>
+  </div>
+
+  <div class="container hero__container">
+
+    <!-- Coluna esquerda — texto -->
+    <div class="hero__content">
+      <span class="hero__tag">
+        <i class="fas fa-star"></i>
+        Treinamento & Desenvolvimento Pessoal
+      </span>
+
+      <h1 class="hero__title">
+        Transformamos <span>Pessoas</span> e
+        <span class="hero__title--blue">Organizações</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Soluções completas em treinamento corporativo, coaching executivo
+        e desenvolvimento humano para empresas que querem crescer de verdade.
+      </p>
+
+      <div class="hero__actions">
+        <a routerLink="/solucoes" class="btn btn--primary btn--lg">
+          <i class="fas fa-rocket"></i>
+          Conheça as Soluções
+        </a>
+        <a routerLink="/contato" class="btn btn--outline-white btn--lg">
+          <i class="fas fa-comment-dots"></i>
+          Fale Conosco
+        </a>
+      </div>
+
+      <!-- Estatísticas -->
+      <div class="hero__stats">
+        @for (stat of stats; track stat.label) {
+          <div class="hero__stat">
+            <span class="hero__stat-value">{{ stat.value }}</span>
+            <span class="hero__stat-label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Coluna direita — foto do Maurício -->
+    <div class="hero__image-wrap">
+      <div class="hero__image-bg"></div>
+      <img
+        src="assets/images/foto-mauricio.png"
+        alt="Maurício Vieira — Fundador da Pacto RH"
+        class="hero__image"
+      />
+      <!-- Card flutuante -->
+      <div class="hero__card hero__card--top">
+        <i class="fas fa-trophy"></i>
+        <div>
+          <strong>+20 anos</strong>
+          <span>de experiência</span>
+        </div>
+      </div>
+      <div class="hero__card hero__card--bottom">
+        <i class="fas fa-users"></i>
+        <div>
+          <strong>+500 empresas</strong>
+          <span>transformadas</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Seta de scroll -->
+  <a href="#servicos" class="hero__scroll-hint" aria-label="Rolar para baixo">
+    <i class="fas fa-chevron-down"></i>
+  </a>
+</section>
