@@ -1,0 +1,31 @@
+<section class="services section section--soft" id="servicos">
+  <div class="container">
+
+    <div class="section-header section-header--center">
+      <span class="section-tag">O que oferecemos</span>
+      <h2 class="section-title">
+        Soluções completas em <span>Desenvolvimento Humano</span>
+      </h2>
+      <p class="section-subtitle">
+        Da estratégia à execução — ajudamos empresas e profissionais a
+        alcançarem seu máximo potencial.
+      </p>
+    </div>
+
+    <div class="services__grid">
+      @for (service of services; track service.title) {
+        <a [routerLink]="service.link" class="service-card" [class]="'service-card--' + service.color">
+          <div class="service-card__icon">
+            <i [class]="service.icon"></i>
+          </div>
+          <h3 class="service-card__title">{{ service.title }}</h3>
+          <p class="service-card__text">{{ service.description }}</p>
+          <span class="service-card__link">
+            Saiba mais <i class="fas fa-arrow-right"></i>
+          </span>
+        </a>
+      }
+    </div>
+
+  </div>
+</section>

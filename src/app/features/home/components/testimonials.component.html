@@ -1,0 +1,73 @@
+<section class="testimonials section section--dark">
+  <div class="container">
+
+    <div class="section-header section-header--center">
+      <span class="section-tag" style="color: rgba(255,255,255,0.7)">Depoimentos</span>
+      <h2 class="section-title">
+        O que nossos clientes <span>dizem</span>
+      </h2>
+      <p class="section-subtitle">
+        Mais de 500 empresas já transformaram suas equipes com a Pacto RH.
+      </p>
+    </div>
+
+    <!-- Carrossel -->
+    <div class="testimonials__carousel">
+
+      @for (t of testimonials; track t.name; let i = $index) {
+        <div
+          class="testimonial-card"
+          [class.testimonial-card--active]="activeIndex() === i"
+          [class.testimonial-card--prev]="activeIndex() === i + 1 || (activeIndex() === 0 && i === testimonials.length - 1)"
+          [class.testimonial-card--next]="activeIndex() === i - 1 || (activeIndex() === testimonials.length - 1 && i === 0)"
+        >
+          <!-- Aspas decorativas -->
+          <div class="testimonial-card__quote">
+            <i class="fas fa-quote-left"></i>
+          </div>
+
+          <p class="testimonial-card__text">{{ t.text }}</p>
+
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar" [class]="'testimonial-card__avatar--' + t.color">
+              {{ t.initials }}
+            </div>
+            <div class="testimonial-card__info">
+              <strong>{{ t.name }}</strong>
+              <span>{{ t.role }} · {{ t.company }}</span>
+            </div>
+            <div class="testimonial-card__stars">
+              @for (star of [1,2,3,4,5]; track star) {
+                <i class="fas fa-star"></i>
+              }
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+
+    <!-- Controles -->
+    <div class="testimonials__controls">
+      <button class="testimonials__btn" (click)="prev()" aria-label="Anterior">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+
+      <div class="testimonials__dots">
+        @for (t of testimonials; track t.name; let i = $index) {
+          <button
+            class="testimonials__dot"
+            [class.testimonials__dot--active]="activeIndex() === i"
+            (click)="goTo(i)"
+            [attr.aria-label]="'Ir para depoimento ' + (i + 1)"
+          ></button>
+        }
+      </div>
+
+      <button class="testimonials__btn" (click)="next()" aria-label="Próximo">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+  </div>
+</section>

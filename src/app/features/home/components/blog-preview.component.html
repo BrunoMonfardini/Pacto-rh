@@ -1,0 +1,55 @@
+<section class="blog-preview section section--soft">
+  <div class="container">
+
+    <div class="blog-preview__header">
+      <div>
+        <span class="section-tag">Blog</span>
+        <h2 class="section-title">
+          Conteúdo para <span>sua evolução</span>
+        </h2>
+        <p class="section-subtitle">
+          Artigos sobre liderança, RH, comportamento e desenvolvimento profissional.
+        </p>
+      </div>
+      <a routerLink="/blog" class="btn btn--outline">
+        Ver todos os posts <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="blog-preview__grid">
+      @for (post of posts; track post.slug) {
+        <a [routerLink]="'/blog/' + post.slug" class="post-card">
+
+          <!-- Capa -->
+          <div class="post-card__cover" [class]="'post-card__cover--' + post.coverColor">
+            <i [class]="post.icon"></i>
+          </div>
+
+          <div class="post-card__body">
+            <!-- Meta -->
+            <div class="post-card__meta">
+              <span class="post-card__category" [class]="'post-card__category--' + post.categoryColor">
+                {{ post.category }}
+              </span>
+              <span class="post-card__date">{{ post.date }}</span>
+            </div>
+
+            <h3 class="post-card__title">{{ post.title }}</h3>
+            <p class="post-card__excerpt">{{ post.excerpt }}</p>
+
+            <div class="post-card__footer">
+              <span class="post-card__reading">
+                <i class="fas fa-clock"></i> {{ post.readingTime }} min de leitura
+              </span>
+              <span class="post-card__link">
+                Ler artigo <i class="fas fa-arrow-right"></i>
+              </span>
+            </div>
+          </div>
+
+        </a>
+      }
+    </div>
+
+  </div>
+</section>
