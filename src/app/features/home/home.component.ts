@@ -1,26 +1,23 @@
 import { Component } from '@angular/core';
-import { HeroComponent }             from './components/hero.component';
-import { ServicesHighlightComponent } from './components/services-highlight.component';
-import { TestimonialsComponent }      from './components/testimonials.component';
-import { EbookBannerComponent }       from './components/ebook-banner.component';
-import { BlogPreviewComponent }       from './components/blog-preview.component';
+import { HeroComponent }          from './components/hero.component';
+import { AudienceSplitComponent } from './components/audience-split.component';
+import { AboutMauricioComponent } from './components/about-mauricio.component';
+import { TestimonialsComponent }  from './components/testimonials.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     HeroComponent,
-    ServicesHighlightComponent,
+    AudienceSplitComponent,
+    AboutMauricioComponent,
     TestimonialsComponent,
-    EbookBannerComponent,
-    BlogPreviewComponent,
   ],
   template: `
     <app-hero />
-    <app-services-highlight />
+    <app-audience-split />
+    <app-about-mauricio />
     <app-testimonials />
-    <app-ebook-banner />
-    <app-blog-preview />
   `,
 })
 export class HomeComponent {}

@@ -1,3 +1,22 @@
+Instruçoes de uso:
+# 1. Para o servidor se estiver rodando
+Ctrl + C
+
+# 2. Apaga o cache do Angular
+rm -rf .angular
+
+# 3. Apaga as dependências instaladas
+rm -rf node_modules
+
+# 4. Reinstala tudo do zero
+npm install
+
+# 5. Sobe o servidor
+ng serve
+
+
+Estrutura do código:
+
 src/
 ├── app/
 │   ├── core/                             # Lógica global — NÃO MUDA
