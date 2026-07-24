@@ -110,3 +110,8 @@ Todas as rotas públicas são carregadas dentro de `PublicLayoutComponent` (head
 1. Crie uma branch a partir de `main`
 2. Siga o padrão de commits do histórico (`tipo(escopo): descrição`, ex.: `fix(showcase): ajuste estrutura do projeto`)
 3. Rode `npm test` antes de abrir PR
+
+
+## links utéis
+
+figma: https://www.figma.com/site/rZFAg5Qtu1HFRXc2Rfaxoo/Pacto-RH?node-id=0-1&p=f&t=8Zs5fSuOYuHioyUy-0
