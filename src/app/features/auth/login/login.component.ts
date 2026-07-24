@@ -7,6 +7,7 @@ import { CardComponent } from '../../../shared/components/card.component';
 import { InputComponent } from '../../../shared/components/input.component';
 import { ButtonComponent } from '../../../shared/components/button.component';
 import { ROUTES } from '../../../shared/constants/routes.constants';
+import { extractErrorMessage } from '../../../core/utils/http-error.util';
 
 @Component({
   selector: 'app-login',
@@ -38,8 +39,8 @@ export class LoginComponent {
 
     this.authService.login(this.form.getRawValue()).subscribe({
       next: () => this.router.navigate([ROUTES.home]),
-      error: (err: Error) => {
-        this.errorMessage.set(err.message);
+      error: (err: unknown) => {
+        this.errorMessage.set(extractErrorMessage(err, 'E-mail ou senha inválidos.'));
         this.loading.set(false);
       },
     });

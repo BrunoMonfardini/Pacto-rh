@@ -36,7 +36,7 @@
     font-weight: 800;
     color: #fff;
 
-    em { color: var(--color-red-400); font-style: normal; }
+    em { font-style: normal; }
   }
 
   &__tagline {
@@ -73,7 +73,7 @@
       gap: var(--space-3);
 
       i {
-        color: var(--color-red-400);
+        color: rgba(255, 255, 255, 0.7);
         margin-top: 3px;
         width: 14px;
         flex-shrink: 0;
@@ -92,7 +92,7 @@
     transition: color var(--transition), padding-left var(--transition);
 
     &:hover {
-      color: var(--color-blue-300);
+      color: #fff;
       padding-left: var(--space-2);
     }
   }
@@ -127,8 +127,8 @@
   transition: all var(--transition);
 
   &:hover {
-    background-color: var(--color-primary);
-    color: #fff;
+    background-color: #fff;
+    color: var(--color-bg-dark);
     transform: translateY(-2px);
   }
 }

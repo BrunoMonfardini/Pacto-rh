@@ -6,6 +6,7 @@ import { SectionComponent } from '../../../shared/components/section.component';
 import { CardComponent } from '../../../shared/components/card.component';
 import { InputComponent } from '../../../shared/components/input.component';
 import { ButtonComponent } from '../../../shared/components/button.component';
+import { extractErrorMessage } from '../../../core/utils/http-error.util';
 
 function passwordsMatch(control: AbstractControl): ValidationErrors | null {
   return control.get('password')?.value === control.get('confirmPassword')?.value
@@ -29,10 +30,11 @@ export class ResetPasswordComponent {
 
   readonly loading = signal(false);
   readonly successMessage = signal<string | null>(null);
+  readonly errorMessage = signal<string | null>(null);
 
   readonly form = this.fb.nonNullable.group(
     {
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required],
     },
     { validators: passwordsMatch }
@@ -45,10 +47,17 @@ export class ResetPasswordComponent {
     }
 
     this.loading.set(true);
-    this.authService.resetPassword(this.token, this.form.getRawValue().password).subscribe(({ message }) => {
-      this.successMessage.set(message);
-      this.loading.set(false);
-      setTimeout(() => this.router.navigate(['/auth/login']), 1500);
+    this.errorMessage.set(null);
+    this.authService.resetPassword(this.token, this.form.getRawValue().password).subscribe({
+      next: ({ message }) => {
+        this.successMessage.set(message);
+        this.loading.set(false);
+        setTimeout(() => this.router.navigate(['/auth/login']), 1500);
+      },
+      error: (err: unknown) => {
+        this.errorMessage.set(extractErrorMessage(err, 'Não foi possível redefinir sua senha. O link pode ter expirado.'));
+        this.loading.set(false);
+      },
     });
   }
 }

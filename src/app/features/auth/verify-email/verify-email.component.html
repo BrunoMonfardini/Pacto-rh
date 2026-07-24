@@ -4,8 +4,10 @@
 
     @if (loading()) {
       <p class="section-subtitle">Verificando seu e-mail…</p>
-    } @else {
+    } @else if (success()) {
       <p class="auth-card__success">{{ message() }}</p>
+    } @else {
+      <p class="form-error">{{ message() }}</p>
     }
 
     <p class="auth-card__footer">

@@ -1,21 +1,15 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, delay, of, tap, throwError } from 'rxjs';
+import { Observable, catchError, of, tap } from 'rxjs';
 import { TokenService } from './token.service';
+import { AuthRepository } from '../repositories/auth.repository';
 import { STORAGE_KEYS } from '../../config/storage.config';
 import { ROUTES } from '../../shared/constants/routes.constants';
 import { AuthSession, LoginCredentials, MessageResponse, RegisterPayload, Role, User } from '../models';
 
-/**
- * MOCK — não há backend real ainda. Toda a lógica abaixo roda em memória
- * (delay simulando latência de rede) para deixar os fluxos de login/registro
- * demonstráveis. Quando existir uma API, troque os métodos privados
- * `mock*` por chamadas ao core/repositories/auth.repository.ts.
- */
-const MOCK_DELAY_MS = 400;
-
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private readonly authRepository = inject(AuthRepository);
   private readonly tokenService = inject(TokenService);
   private readonly router = inject(Router);
 
@@ -24,14 +18,24 @@ export class AuthService {
   readonly isAuthenticated = computed(() => this._currentUser() !== null);
 
   login(credentials: LoginCredentials): Observable<AuthSession> {
-    return this.mockLogin(credentials).pipe(tap((session) => this.setSession(session)));
+    return this.authRepository.login(credentials).pipe(tap((session) => this.setSession(session)));
   }
 
   register(payload: RegisterPayload): Observable<AuthSession> {
-    return this.mockRegister(payload).pipe(tap((session) => this.setSession(session)));
+    return this.authRepository.register(payload).pipe(tap((session) => this.setSession(session)));
   }
 
-  logout(): void {
+  /**
+   * @param options.revoke `false` pula a chamada a `POST /auth/logout` — usado pelo
+   * authInterceptor no deslogamento automático por 401, para não repetir uma chamada
+   * que falharia com o mesmo 401 (o token que expirou é o mesmo que autorizaria a revogação).
+   */
+  logout(options: { revoke?: boolean } = {}): void {
+    const token = this.tokenService.getAccessToken();
+    if (options.revoke !== false && token) {
+      this.authRepository.logout().pipe(catchError(() => of(undefined))).subscribe();
+    }
+
     this.tokenService.clear();
     localStorage.removeItem(STORAGE_KEYS.user);
     this._currentUser.set(null);
@@ -39,17 +43,15 @@ export class AuthService {
   }
 
   forgotPassword(email: string): Observable<MessageResponse> {
-    return of({ message: `Se ${email} existir em nossa base, um link de recuperação foi enviado.` }).pipe(
-      delay(MOCK_DELAY_MS)
-    );
+    return this.authRepository.forgotPassword(email);
   }
 
-  resetPassword(_token: string, _newPassword: string): Observable<MessageResponse> {
-    return of({ message: 'Senha redefinida com sucesso.' }).pipe(delay(MOCK_DELAY_MS));
+  resetPassword(token: string, newPassword: string): Observable<MessageResponse> {
+    return this.authRepository.resetPassword(token, newPassword);
   }
 
-  verifyEmail(_token: string): Observable<MessageResponse> {
-    return of({ message: 'E-mail verificado com sucesso.' }).pipe(delay(MOCK_DELAY_MS));
+  verifyEmail(token: string): Observable<MessageResponse> {
+    return this.authRepository.verifyEmail(token);
   }
 
   hasRole(role: Role): boolean {
@@ -75,36 +77,5 @@ export class AuthService {
     if (!this.tokenService.hasSession()) return null;
     const raw = localStorage.getItem(STORAGE_KEYS.user);
     return raw ? (JSON.parse(raw) as User) : null;
-  }
-
-  // --- Mocks (substituir por AuthRepository quando a API existir) ---
-
-  private mockLogin(credentials: LoginCredentials): Observable<AuthSession> {
-    if (credentials.password.length < 6) {
-      return throwError(() => new Error('E-mail ou senha inválidos.')).pipe(delay(MOCK_DELAY_MS));
-    }
-    return of(this.buildMockSession(credentials.email, credentials.email.split('@')[0])).pipe(
-      delay(MOCK_DELAY_MS)
-    );
-  }
-
-  private mockRegister(payload: RegisterPayload): Observable<AuthSession> {
-    return of(this.buildMockSession(payload.email, payload.name)).pipe(delay(MOCK_DELAY_MS));
-  }
-
-  private buildMockSession(email: string, name: string): AuthSession {
-    return {
-      user: {
-        id: crypto.randomUUID(),
-        name,
-        email,
-        roles: ['customer'],
-        createdAt: new Date().toISOString(),
-      },
-      tokens: {
-        accessToken: `mock-access-${crypto.randomUUID()}`,
-        refreshToken: `mock-refresh-${crypto.randomUUID()}`,
-      },
-    };
   }
 }

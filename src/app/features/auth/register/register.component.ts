@@ -7,6 +7,7 @@ import { CardComponent } from '../../../shared/components/card.component';
 import { InputComponent } from '../../../shared/components/input.component';
 import { ButtonComponent } from '../../../shared/components/button.component';
 import { ROUTES } from '../../../shared/constants/routes.constants';
+import { extractErrorMessage } from '../../../core/utils/http-error.util';
 
 function passwordsMatch(control: AbstractControl): ValidationErrors | null {
   const password = control.get('password')?.value;
@@ -32,7 +33,7 @@ export class RegisterComponent {
     {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', Validators.required],
     },
     { validators: passwordsMatch }
@@ -50,8 +51,8 @@ export class RegisterComponent {
     const { name, email, password } = this.form.getRawValue();
     this.authService.register({ name, email, password }).subscribe({
       next: () => this.router.navigate([ROUTES.home]),
-      error: (err: Error) => {
-        this.errorMessage.set(err.message);
+      error: (err: unknown) => {
+        this.errorMessage.set(extractErrorMessage(err, 'Não foi possível criar sua conta.'));
         this.loading.set(false);
       },
     });

@@ -47,7 +47,7 @@
   font-family: var(--font-heading);
   font-size: var(--fs-sm);
   font-weight: 600;
-  color: var(--color-red-400);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .mauricio-card__text {
@@ -73,5 +73,5 @@
     color: rgba(255, 255, 255, 0.9);
   }
 
-  i { color: var(--color-red-400); }
+  i { color: rgba(255, 255, 255, 0.9); }
 }

@@ -12,39 +12,22 @@
 //  BLOG
 // ------------------------------------------------------------
 export interface BlogPost {
-  id: number;
+  id: string;
   title: string;
   slug: string;           // URL amigável: "como-liderar-equipes"
   excerpt: string;        // Resumo curto para listagem
   content: string;        // HTML completo do post
   coverImage: string;     // URL da imagem de capa
-  category: BlogCategory;
-  author: Author;
   publishedAt: string;    // ISO date string
   readingTime: number;    // minutos de leitura estimados
   tags: string[];
-}
-
-export interface BlogCategory {
-  id: number;
-  name: string;
-  slug: string;
-  color: string;          // cor hex para o badge
-}
-
-export interface Author {
-  id: number;
-  name: string;
-  bio: string;
-  avatar: string;
-  role: string;
 }
 
 // ------------------------------------------------------------
 //  PRODUTOS / E-BOOKS
 // ------------------------------------------------------------
 export interface Product {
-  id: number;
+  id: string;
   slug: string;
   name: string;
   description: string;
@@ -53,8 +36,6 @@ export interface Product {
   price: number;          // em centavos (ex: 4700 = R$ 47,00)
   originalPrice?: number; // preço original para mostrar desconto
   type: 'ebook' | 'course' | 'mentoring';
-  pages?: number;         // para e-books
-  hours?: number;         // para cursos
   topics: string[];       // lista de tópicos abordados
   benefits: string[];     // benefícios do produto
   featured: boolean;

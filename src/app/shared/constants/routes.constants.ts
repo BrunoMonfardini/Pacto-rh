@@ -7,6 +7,8 @@ export const ROUTES = {
   sobre: '/sobre',
   contato: '/contato',
   blog: '/blog',
+  login: '/auth/login',
+  register: '/auth/register',
 } as const;
 
 /** Âncoras (fragments) das seções da home, usadas pelo scroll suave. */

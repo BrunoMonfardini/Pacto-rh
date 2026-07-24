@@ -15,7 +15,7 @@
       @for (item of audiences; track item.title; let i = $index) {
         <article
           class="card card--hoverable audience-card"
-          [class]="'audience-card--' + item.color"
+          [class]="'audience-card--' + item.color + ' theme-' + item.color"
           appScrollReveal
           [revealDelay]="i * 120"
         >

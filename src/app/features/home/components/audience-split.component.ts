@@ -23,7 +23,7 @@ interface Audience {
 export class AudienceSplitComponent {
   readonly audiences: Audience[] = [
     {
-      color: 'red',
+      color: 'blue',
       icon: 'fa-building',
       title: 'Empresas',
       description: 'Programas sob medida para elevar performance e engajamento das equipes.',
@@ -36,7 +36,7 @@ export class AudienceSplitComponent {
       route: ROUTES.empresa,
     },
     {
-      color: 'blue',
+      color: 'red',
       icon: 'fa-user',
       title: 'Profissionais',
       description: 'Ferramentas e conteúdos para impulsionar sua carreira e autoconhecimento.',
