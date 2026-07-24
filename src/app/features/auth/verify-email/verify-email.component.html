@@ -1,0 +1,15 @@
+<app-section [padding]="'lg'" [containerSize]="'sm'">
+  <app-card class="auth-card">
+    <h1 class="section-title">Verificação de e-mail</h1>
+
+    @if (loading()) {
+      <p class="section-subtitle">Verificando seu e-mail…</p>
+    } @else {
+      <p class="auth-card__success">{{ message() }}</p>
+    }
+
+    <p class="auth-card__footer">
+      <a routerLink="/auth/login">Voltar para o login</a>
+    </p>
+  </app-card>
+</app-section>

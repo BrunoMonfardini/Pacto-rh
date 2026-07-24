@@ -1,0 +1,37 @@
+<app-section [padding]="'lg'" [containerSize]="'sm'">
+  <app-card class="auth-card">
+    <h1 class="section-title">Criar conta</h1>
+    <p class="section-subtitle">Cadastre-se para acompanhar seu progresso.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+      <app-input label="Nome" placeholder="Seu nome" formControlName="name" />
+      <app-input label="E-mail" type="email" placeholder="voce@email.com" formControlName="email" />
+      <app-input
+        label="Senha"
+        type="password"
+        placeholder="••••••••"
+        formControlName="password"
+        [error]="form.controls.password.touched && form.controls.password.invalid ? 'Mínimo de 6 caracteres.' : undefined"
+      />
+      <app-input
+        label="Confirmar senha"
+        type="password"
+        placeholder="••••••••"
+        formControlName="confirmPassword"
+        [error]="form.controls.confirmPassword.touched && form.hasError('passwordsMismatch') ? 'As senhas não coincidem.' : undefined"
+      />
+
+      @if (errorMessage()) {
+        <p class="form-error">{{ errorMessage() }}</p>
+      }
+
+      <app-button type="submit" [disabled]="loading()" [fullWidth]="true">
+        {{ loading() ? 'Criando conta…' : 'Criar conta' }}
+      </app-button>
+    </form>
+
+    <p class="auth-card__footer">
+      Já tem conta? <a routerLink="/auth/login">Entrar</a>
+    </p>
+  </app-card>
+</app-section>
