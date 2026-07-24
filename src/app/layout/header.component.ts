@@ -1,11 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
-interface NavItem {
-  label: string;
-  route: string;
-  fragment?: string;
-}
+import { HEADER_NAV_LINKS } from '../shared/constants/nav.constants';
 
 @Component({
   selector: 'app-header',
@@ -15,13 +10,7 @@ interface NavItem {
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  readonly navItems: NavItem[] = [
-    { label: 'Home', route: '/', fragment: 'home' },
-    { label: 'Soluções', route: '/', fragment: 'solucoes' },
-    { label: 'Sobre', route: '/', fragment: 'sobre' },
-    { label: 'DISC', route: '/disc' },
-    { label: 'Contato', route: '/', fragment: 'contato' },
-  ];
+  readonly navItems = HEADER_NAV_LINKS;
 
   isMobileOpen = signal(false);
 

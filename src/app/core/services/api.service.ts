@@ -1,3 +1,35 @@
-get(url: string) {
-  return this.http.get(`${this.baseUrl}/${url}`);
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { API_CONFIG } from '../../config/api.config';
+
+/**
+ * Wrapper fino sobre o HttpClient — centraliza a baseUrl da API.
+ * Repositórios (core/repositories) usam este service; nenhum outro
+ * lugar do app deve montar URLs de API manualmente.
+ */
+@Injectable({ providedIn: 'root' })
+export class ApiService {
+  private readonly http = inject(HttpClient);
+  private readonly baseUrl = API_CONFIG.baseUrl;
+
+  get<T>(path: string, params?: Record<string, string | number>): Observable<T> {
+    return this.http.get<T>(`${this.baseUrl}${path}`, { params });
+  }
+
+  post<T>(path: string, body: unknown): Observable<T> {
+    return this.http.post<T>(`${this.baseUrl}${path}`, body);
+  }
+
+  put<T>(path: string, body: unknown): Observable<T> {
+    return this.http.put<T>(`${this.baseUrl}${path}`, body);
+  }
+
+  patch<T>(path: string, body: unknown): Observable<T> {
+    return this.http.patch<T>(`${this.baseUrl}${path}`, body);
+  }
+
+  delete<T>(path: string): Observable<T> {
+    return this.http.delete<T>(`${this.baseUrl}${path}`);
+  }
 }

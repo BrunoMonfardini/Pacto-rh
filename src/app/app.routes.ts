@@ -54,6 +54,10 @@ export const routes: Routes = [
           import('./features/blog/blog-detail.component').then(m => m.BlogDetailComponent),
         title: 'Blog — PactoRH',
       },
+      {
+        path: 'auth',
+        loadChildren: () => import('./features/auth/auth.routes').then(m => m.authRoutes),
+      },
     ],
   },
   { path: '**', redirectTo: '' },

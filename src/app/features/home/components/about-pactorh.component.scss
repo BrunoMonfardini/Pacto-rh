@@ -31,16 +31,7 @@
 
 .pillar-card {
   padding: var(--space-8) var(--space-6);
-  border-radius: var(--radius-lg);
-  background: var(--color-bg-white);
-  border: 1px solid var(--color-border-light);
   text-align: center;
-  transition: transform var(--transition), box-shadow var(--transition);
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-  }
 }
 
 .pillar-card__icon {

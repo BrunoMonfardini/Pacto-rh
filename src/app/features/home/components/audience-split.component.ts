@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.directive';
+import { ButtonComponent } from '../../../shared/components/button.component';
+import { ROUTES } from '../../../shared/constants/routes.constants';
 
 interface Audience {
   color: 'red' | 'blue';
@@ -15,7 +16,7 @@ interface Audience {
 @Component({
   selector: 'app-audience-split',
   standalone: true,
-  imports: [RouterLink, ScrollRevealDirective],
+  imports: [ScrollRevealDirective, ButtonComponent],
   templateUrl: './audience-split.component.html',
   styleUrl: './audience-split.component.scss',
 })
@@ -32,7 +33,7 @@ export class AudienceSplitComponent {
         'Acompanhamento de resultados',
       ],
       cta: 'Conhecer soluções',
-      route: '/empresa',
+      route: ROUTES.empresa,
     },
     {
       color: 'blue',
@@ -45,7 +46,7 @@ export class AudienceSplitComponent {
         'Conteúdos de desenvolvimento pessoal',
       ],
       cta: 'Conhecer conteúdos',
-      route: '/profissional',
+      route: ROUTES.profissional,
     },
   ];
 }

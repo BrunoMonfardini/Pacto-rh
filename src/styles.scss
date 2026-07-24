@@ -7,52 +7,52 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
 
 :root {
-  // --- Paleta fiel ao Figma ---
-  // Azuis (coluna esquerda da paleta)
-  --color-blue-900:  #0d1433;   // azul quase preto
-  --color-blue-800:  #1a2b5e;   // azul escuro principal
-  --color-blue-700:  #1e3578;   // azul escuro médio
-  --color-blue-600:  #2d4499;   // azul médio
-  --color-blue-500:  #3d5bc0;   // azul saturado
-  --color-blue-400:  #6a85d4;   // azul médio claro
-  --color-blue-300:  #94acdf;   // azul claro
-  --color-blue-200:  #b8c8e8;   // azul bem claro
-  --color-blue-100:  #dce4f2;   // azul claríssimo
+  // --- Paleta institucional PactoRH ---
+  // Azul institucional #0600C3 — empresas, corporativo (âncora em 800)
+  --color-blue-900:  #04008c;
+  --color-blue-800:  #0600c3;   // azul institucional
+  --color-blue-700:  #332ece;
+  --color-blue-600:  #5b57d7;
+  --color-blue-500:  #8380e1;
+  --color-blue-400:  #a5a3e9;
+  --color-blue-300:  #c3c2f1;
+  --color-blue-200:  #dcdbf7;
+  --color-blue-100:  #f0f0fb;
 
-  // Vermelhos (coluna direita da paleta)
-  --color-red-900:   #4a0a0a;   // vermelho quase preto
-  --color-red-800:   #8b1515;   // vermelho escuro
-  --color-red-700:   #a81b1b;   // vermelho escuro médio
-  --color-red-600:   #c41e2a;   // vermelho principal
-  --color-red-500:   #d93344;   // vermelho médio
-  --color-red-400:   #e06070;   // vermelho rosado
-  --color-red-300:   #e89099;   // rosa médio
-  --color-red-200:   #f0b8bc;   // rosa claro
-  --color-red-100:   #f7d8da;   // rosa claríssimo
+  // Vermelho institucional #8E0300 — profissionais, pessoas (âncora em 800)
+  --color-red-900:   #660200;
+  --color-red-800:   #8e0300;   // vermelho institucional
+  --color-red-700:   #a2302e;
+  --color-red-600:   #b45957;
+  --color-red-500:   #c78180;
+  --color-red-400:   #d6a4a3;
+  --color-red-300:   #e4c3c2;
+  --color-red-200:   #efdcdb;
+  --color-red-100:   #f8f0f0;
 
   // Aliases principais
   --color-primary:       var(--color-blue-800);
   --color-primary-dark:  var(--color-blue-900);
   --color-primary-light: var(--color-blue-100);
 
-  --color-red:           var(--color-red-600);
-  --color-red-dark:      var(--color-red-800);
+  --color-red:           var(--color-red-800);
+  --color-red-dark:      var(--color-red-900);
   --color-red-light:     var(--color-red-100);
 
-  // Neutros (fundo cinza claro como no Figma)
-  --color-bg:            #f0f0f0;   // fundo da página
-  --color-bg-white:      #ffffff;   // cards e áreas brancas
-  --color-bg-dark:       #0d1433;   // seções escuras
+  // Neutros
+  --color-bg:            #ebebeb;   // "branco" institucional — fundo da página
+  --color-bg-white:      #ffffff;   // cards elevados sobre o fundo
+  --color-bg-dark:       #191919;   // "preto" institucional — footer, navbar escura
 
-  // Textos
-  --color-text:          #1a1a1a;
-  --color-text-light:    #555555;
-  --color-text-muted:    #888888;
+  // Textos — só preto/branco puros (hierarquia via opacidade, nunca cinza)
+  --color-text:          #000000;
+  --color-text-light:    rgba(0, 0, 0, 0.62);
+  --color-text-muted:    rgba(0, 0, 0, 0.45);
   --color-text-white:    #ffffff;
 
-  // Bordas
-  --color-border:        #d0d0d0;
-  --color-border-light:  #e8e8e8;
+  // Bordas — derivadas do preto institucional, nunca cinza à parte
+  --color-border:        rgba(25, 25, 25, 0.16);
+  --color-border-light:  rgba(25, 25, 25, 0.08);
 
   // Tipografia
   --font-heading: 'Montserrat', sans-serif;
@@ -214,6 +214,8 @@ h1,h2,h3,h4,h5,h6 {
   &:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
 }
 
+app-button.btn-host--full { display: block; }
+
 // ============================================================
 //  SEÇÕES
 // ============================================================
@@ -262,6 +264,33 @@ h1,h2,h3,h4,h5,h6 {
 .section--dark .section-tag { color: var(--color-red-400); }
 
 // ============================================================
+//  CARD (base única — evita reimplementar padding/radius/shadow
+//  em cada componente que precisa de um cartão)
+// ============================================================
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+
+  &--dark {
+    background: var(--color-bg-dark);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-white);
+  }
+
+  &--hoverable:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+// ============================================================
 //  UTILITÁRIOS
 // ============================================================
 .text-blue    { color: var(--color-primary) !important; }
@@ -290,6 +319,41 @@ h1,h2,h3,h4,h5,h6 {
   gap: var(--space-6);
   @media (min-width: 640px)  { grid-template-columns: repeat(2, 1fr); }
   @media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
+}
+
+// ============================================================
+//  AUTH (login, registro, recuperação de senha — layout compartilhado)
+// ============================================================
+.auth-card {
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-6);
+}
+
+.auth-card__success {
+  margin-top: var(--space-6);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-blue-100);
+  color: var(--color-primary-dark);
+  font-size: var(--fs-sm);
+}
+
+.auth-card__footer {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-light);
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+  text-align: center;
+
+  a { color: var(--color-primary); font-weight: 600; }
 }
 
 // ============================================================

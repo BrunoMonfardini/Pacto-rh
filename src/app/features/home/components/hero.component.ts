@@ -16,7 +16,7 @@ export class HeroComponent {
     'var(--color-blue-600)',
     'var(--color-blue-400)',
     'var(--color-blue-200)',
-    'var(--hero-glow-center)',
+    'var(--color-blue-100)',
     'var(--color-red-200)',
     'var(--color-red-400)',
     'var(--color-red-600)',

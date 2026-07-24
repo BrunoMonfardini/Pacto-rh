@@ -14,7 +14,7 @@
     <div class="solutions__grid">
       @for (item of audiences; track item.title; let i = $index) {
         <article
-          class="audience-card"
+          class="card card--hoverable audience-card"
           [class]="'audience-card--' + item.color"
           appScrollReveal
           [revealDelay]="i * 120"
@@ -32,12 +32,14 @@
             }
           </ul>
 
-          <a [routerLink]="item.route" class="btn audience-card__cta"
-             [class.btn--red]="item.color === 'red'"
-             [class.btn--primary]="item.color === 'blue'">
+          <app-button
+            class="audience-card__cta"
+            [link]="item.route"
+            [variant]="item.color === 'red' ? 'red' : 'primary'"
+          >
             {{ item.cta }}
             <i class="fas fa-arrow-right"></i>
-          </a>
+          </app-button>
         </article>
       }
     </div>

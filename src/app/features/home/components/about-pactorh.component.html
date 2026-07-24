@@ -17,7 +17,7 @@
 
     <div class="pactorh-info__grid">
       @for (pillar of pillars; track pillar.title; let i = $index) {
-        <div class="pillar-card" appScrollReveal [revealDelay]="i * 100">
+        <div class="card card--hoverable pillar-card" appScrollReveal [revealDelay]="i * 100">
           <div class="pillar-card__icon">
             <i class="fas" [class]="pillar.icon"></i>
           </div>

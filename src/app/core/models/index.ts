@@ -76,19 +76,6 @@ export interface Service {
 }
 
 // ------------------------------------------------------------
-//  DEPOIMENTOS
-// ------------------------------------------------------------
-export interface Testimonial {
-  id: number;
-  name: string;
-  role: string;
-  company: string;
-  text: string;
-  avatar?: string;        // URL da foto (opcional — usa iniciais se não tiver)
-  rating: number;         // 1 a 5
-}
-
-// ------------------------------------------------------------
 //  FORMULÁRIO DE CONTATO
 // ------------------------------------------------------------
 export interface ContactForm {
@@ -139,4 +126,45 @@ export interface ApiResponse<T> {
   data: T;
   success: boolean;
   message?: string;
+}
+
+// ------------------------------------------------------------
+//  AUTENTICAÇÃO
+//  (estrutura preparada — sem backend real ainda, ver
+//  core/services/auth.service.ts)
+// ------------------------------------------------------------
+export type Role = 'admin' | 'editor' | 'customer';
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  roles: Role[];
+  avatar?: string;
+  createdAt: string;
+}
+
+export interface AuthTokens {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface AuthSession {
+  user: User;
+  tokens: AuthTokens;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface RegisterPayload {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface MessageResponse {
+  message: string;
 }
