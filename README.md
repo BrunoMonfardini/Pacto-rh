@@ -1,4 +1,34 @@
-Instruçoes de uso:
+# PactoRH
+
+Site institucional da PactoRH — treinamento e desenvolvimento pessoal e corporativo. Construído em Angular 19 (standalone components).
+
+## Stack
+
+- **Angular 19** (standalone components, sem NgModules)
+- **TypeScript 5.7**
+- **RxJS**
+- **SCSS**
+- **Karma / Jasmine** para testes unitários
+
+## Pré-requisitos
+
+- Node.js e npm
+- Angular CLI (`npm install -g @angular/cli`) — opcional, o projeto já expõe os comandos via `npm run`
+
+## Como rodar
+
+```bash
+npm install
+npm run dev
+```
+
+O servidor sobe em `http://localhost:4200`.
+
+### Resetar ambiente do zero
+
+Em caso de problemas de cache/dependências:
+
+```bash
 # 1. Para o servidor se estiver rodando
 Ctrl + C
 
@@ -12,167 +42,71 @@ rm -rf node_modules
 npm install
 
 # 5. Sobe o servidor
-ng serve
+npm run dev
+```
 
+## Scripts disponíveis
 
-Estrutura do código:
+| Comando                      | Descrição                                         |
+| ----------------------------- | -------------------------------------------------- |
+| `npm run dev` / `npm start`  | Sobe o servidor de desenvolvimento (`ng serve`)   |
+| `npm run build`              | Build de produção                                 |
+| `npm run watch`              | Build em modo watch (development)                 |
+| `npm test`                   | Executa os testes unitários (Karma)               |
 
-src/
-├── app/
-│   ├── core/                             # Lógica global — NÃO MUDA
-│   │   ├── guards/
-│   │   │   └── auth.guard.ts             # ✅ já existe
-│   │   ├── interceptors/
-│   │   │   └── auth.interceptor.ts       # ✅ já existe
-│   │   ├── models/
-│   │   │   └── index.ts                  # ✅ já existe
-│   │   └── services/
-│   │       ├── api.service.ts            # ✅ já existe
-│   │       ├── auth.service.ts           # ✅ já existe
-│   │       ├── blog.service.ts           # ✅ já existe
-│   │       ├── contact.service.ts        # ✅ já existe
-│   │       └── product.service.ts        # ✅ já existe
-│   │
-│   ├── layout/                           # ATUALIZAR os 3 arquivos do header
-│   │   ├── header.component.ts           # 🔄 SUBSTITUIR pelo novo (menu simplificado)
-│   │   ├── header.component.html         # 🔄 SUBSTITUIR pelo novo (logo | nav central | hamburger)
-│   │   ├── header.component.scss         # 🔄 SUBSTITUIR pelo novo (fundo cinza, sem transparência)
-│   │   ├── footer.component.ts           # ✅ mantém
-│   │   ├── footer.component.html         # ✅ mantém
-│   │   ├── footer.component.scss         # ✅ mantém
-│   │   └── public-layout.component.ts    # ✅ mantém
-│   │
-│   ├── features/
-│   │   │
-│   │   ├── home/                         # REFORMULAR a homepage
-│   │   │   ├── components/
-│   │   │   │   ├── hero.component.ts           # 🔄 SUBSTITUIR (novo visual fundo cinza + colunas)
-│   │   │   │   ├── hero.component.html         # 🔄 SUBSTITUIR
-│   │   │   │   ├── hero.component.scss         # 🔄 SUBSTITUIR
-│   │   │   │   │
-│   │   │   │   ├── audience-split.component.ts   # 🆕 CRIAR (cards Empresa | Profissional)
-│   │   │   │   ├── audience-split.component.html # 🆕 CRIAR
-│   │   │   │   ├── audience-split.component.scss # 🆕 CRIAR
-│   │   │   │   │
-│   │   │   │   ├── about-mauricio.component.ts   # 🆕 CRIAR (seção do Maurício)
-│   │   │   │   ├── about-mauricio.component.html # 🆕 CRIAR
-│   │   │   │   ├── about-mauricio.component.scss # 🆕 CRIAR
-│   │   │   │   │
-│   │   │   │   ├── testimonials.component.ts     # ✅ mantém (carrossel de depoimentos)
-│   │   │   │   ├── testimonials.component.html   # ✅ mantém
-│   │   │   │   ├── testimonials.component.scss   # ✅ mantém
-│   │   │   │   │
-│   │   │   │   ├── services-highlight.component.ts   # 🗑️ PODE DELETAR (virou página /empresa)
-│   │   │   │   ├── ebook-banner.component.ts         # 🗑️ PODE DELETAR (vai para /profissional)
-│   │   │   │   └── blog-preview.component.ts         # 🗑️ PODE DELETAR (simplificado por ora)
-│   │   │   │
-│   │   │   └── home.component.ts             # 🔄 SUBSTITUIR (nova sequência de seções)
-│   │   │
-│   │   ├── empresa/                      # 🆕 CRIAR PASTA E ARQUIVO
-│   │   │   └── empresa.component.ts      # 🆕 CRIAR (stub por agora — página /empresa)
-│   │   │
-│   │   ├── profissional/                 # 🆕 CRIAR PASTA E ARQUIVO
-│   │   │   └── profissional.component.ts # 🆕 CRIAR (stub por agora — página /profissional)
-│   │   │
-│   │   ├── disc/                         # 🆕 CRIAR PASTA E ARQUIVO
-│   │   │   └── disc.component.ts         # 🆕 CRIAR (stub por agora — página /disc)
-│   │   │
-│   │   ├── blog/                         # ✅ mantém os dois arquivos existentes
-│   │   │   ├── blog-list.component.ts
-│   │   │   └── blog-detail.component.ts
-│   │   │
-│   │   ├── contact/                      # ✅ mantém
-│   │   │   └── contact.component.ts
-│   │   │
-│   │   ├── about/                        # ✅ mantém
-│   │   │   └── about.component.ts
-│   │   │
-│   │   ├── solutions/                    # 🗑️ PODE DELETAR (substituída por /empresa)
-│   │   ├── solutions-professional/       # 🗑️ PODE DELETAR (substituída por /profissional)
-│   │   ├── trainings/                    # 🗑️ PODE DELETAR (vai dentro de /empresa futuramente)
-│   │   └── product/                      # ✅ mantém para e-books (vai dentro de /profissional)
-│   │
-│   ├── shared/                           # ✅ NÃO MUDA
-│   │   └── components/
-│   │       ├── button.component.ts
-│   │       ├── card.component.ts
-│   │       ├── input.component.ts
-│   │       ├── modal.component.ts
-│   │       └── section.component.ts
-│   │
-│   ├── dashboard/                        # ✅ NÃO MUDA
-│   │   ├── pages/
-│   │   │   ├── analytics.component.ts
-│   │   │   ├── leads.component.ts
-│   │   │   └── users.component.ts
-│   │   └── dashboard.component.ts
-│   │
-│   ├── app.component.ts                  # ✅ não muda
-│   ├── app.config.ts                     # ✅ não muda
-│   └── app.routes.ts                     # 🔄 SUBSTITUIR (rotas simplificadas)
+## Estrutura do projeto
+
+```
+src/app/
+├── core/                     # Lógica global (guards, interceptors, models, services)
+│   ├── guards/                 # auth.guard.ts
+│   ├── interceptors/           # auth.interceptor.ts
+│   ├── models/                 # index.ts
+│   └── services/                # api, auth, blog, contact, product
 │
-├── assets/
-│   └── images/
-│       ├── foto-mauricio.png             # ✅ já existe
-│       ├── logo-completo-pactorh.png     # ✅ já existe
-│       └── logo-teste-disc.png           # ✅ já existe
+├── layout/                   # Casca da aplicação (header, footer, layout público)
+│   ├── header.component.*
+│   ├── footer.component.*
+│   └── public-layout.component.ts
 │
-├── environments/
-│   ├── environment.ts                    # ✅ não muda
-│   └── environment.prod.ts               # ✅ não muda
+├── features/                 # Páginas/telas, uma pasta por rota
+│   ├── home/                   # Página inicial
+│   │   └── components/           # hero, audience-split, about-mauricio, testimonials
+│   ├── empresa/                 # Página "Para Empresas" (/empresa)
+│   ├── profissional/            # Página "Para Profissionais" (/profissional)
+│   ├── disc/                    # Teste DISC (/disc)
+│   ├── blog/                    # Listagem e detalhe de posts (/blog, /blog/:slug)
+│   ├── contact/                 # Contato (/contato)
+│   ├── about/                   # Sobre (/sobre)
+│   └── product/                  # Detalhe de produto (e-books)
 │
-├── index.html                            # ✅ não muda
-├── main.ts                               # ✅ não muda
-└── styles.scss                           # 🔄 SUBSTITUIR (nova paleta de cores)
+├── dashboard/                # Área administrativa
+│   └── pages/                   # analytics, leads, users
+│
+├── shared/                   # Componentes reutilizáveis (button, card, input, modal, section)
+│
+├── app.routes.ts             # Rotas da aplicação
+├── app.config.ts             # Configuração/providers da aplicação
+└── app.component.ts          # Componente raiz
+```
 
+## Rotas
 
-# ══════════════════════════════════════════════════════════════
-#  LEGENDA
-# ══════════════════════════════════════════════════════════════
-#
-#  ✅  mantém — não precisa tocar
-#  🔄  substituir — copiar o arquivo gerado por cima do que existe
-#  🆕  criar — arquivo novo, não existe ainda
-#  🗑️  pode deletar — não é mais usado (mas não quebra se deixar)
-#
-#
-# ══════════════════════════════════════════════════════════════
-#  ORDEM DE EXECUÇÃO (faça nessa sequência)
-# ══════════════════════════════════════════════════════════════
-#
-#  PASSO 1 — Substituir arquivos existentes
-#  ─────────────────────────────────────────
-#  src/styles.scss
-#  src/app/app.routes.ts
-#  src/app/layout/header.component.ts
-#  src/app/layout/header.component.html
-#  src/app/layout/header.component.scss
-#  src/app/features/home/home.component.ts
-#  src/app/features/home/components/hero.component.ts
-#  src/app/features/home/components/hero.component.html
-#  src/app/features/home/components/hero.component.scss
-#
-#  PASSO 2 — Criar arquivos novos em home/components/
-#  ────────────────────────────────────────────────────
-#  src/app/features/home/components/audience-split.component.ts
-#  src/app/features/home/components/audience-split.component.html
-#  src/app/features/home/components/audience-split.component.scss
-#  src/app/features/home/components/about-mauricio.component.ts
-#  src/app/features/home/components/about-mauricio.component.html
-#  src/app/features/home/components/about-mauricio.component.scss
-#
-#  PASSO 3 — Criar pastas e stubs (no terminal)
-#  ─────────────────────────────────────────────
-#  mkdir -p src/app/features/empresa
-#  mkdir -p src/app/features/profissional
-#  mkdir -p src/app/features/disc
-#
-#  Depois criar dentro de cada pasta:
-#  src/app/features/empresa/empresa.component.ts
-#  src/app/features/profissional/profissional.component.ts
-#  src/app/features/disc/disc.component.ts
-#
-#  PASSO 4 — Testar
-#  ─────────────────
-#  ng serve
-#  Abrir http://localhost:4200
+| Caminho | Componente | Descrição |
+|---|---|---|
+| `/` | `HomeComponent` | Página inicial |
+| `/empresa` | `EmpresaComponent` | Página para empresas |
+| `/profissional` | `ProfissionalComponent` | Página para profissionais |
+| `/disc` | `DiscComponent` | Teste DISC |
+| `/sobre` | `AboutComponent` | Sobre a PactoRH |
+| `/contato` | `ContactComponent` | Contato |
+| `/blog` | `BlogListComponent` | Listagem de posts |
+| `/blog/:slug` | `BlogDetailComponent` | Detalhe do post |
+
+Todas as rotas públicas são carregadas dentro de `PublicLayoutComponent` (header + footer), com lazy loading via `loadComponent`.
+
+## Contribuindo
+
+1. Crie uma branch a partir de `main`
+2. Siga o padrão de commits do histórico (`tipo(escopo): descrição`, ex.: `fix(showcase): ajuste estrutura do projeto`)
+3. Rode `npm test` antes de abrir PR
