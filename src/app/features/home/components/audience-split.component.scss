@@ -1,0 +1,126 @@
+.audience {
+  display: flex;
+  min-height: 620px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    min-height: auto;
+  }
+}
+
+.audience__divider {
+  width: 4px;
+  flex-shrink: 0;
+  background: linear-gradient(to bottom, var(--color-blue-200), #c8c8c8, var(--color-red-200));
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 4px;
+  }
+}
+
+.audience__panel {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--space-16) var(--space-8);
+  text-decoration: none;
+  min-height: 480px;
+
+  @media (max-width: 768px) { min-height: 420px; padding: var(--space-12) var(--space-6); }
+}
+
+// --- Arcos concêntricos, nascendo da borda externa do painel em direção ao centro ---
+.audience__arcs {
+  position: absolute;
+  inset: 0;
+}
+
+.audience__arc {
+  position: absolute;
+  top: -10%;
+  bottom: -10%;
+  transition: transform var(--transition);
+}
+
+.audience__panel--red {
+  .audience__arc {
+    left: 0;
+    border-radius: 0 999px 999px 0;
+  }
+  .audience__arc--red-900 { width: 100%; background: var(--color-red-900); }
+  .audience__arc--red-700 { width: 80%;  background: var(--color-red-700); }
+  .audience__arc--red-500 { width: 60%;  background: var(--color-red-500); }
+  .audience__arc--red-300 { width: 40%;  background: var(--color-red-300); }
+  .audience__arc--red-100 { width: 20%;  background: var(--color-red-100); }
+
+  &:hover .audience__arc { transform: translateX(4%); }
+}
+
+.audience__panel--blue {
+  .audience__arc {
+    right: 0;
+    border-radius: 999px 0 0 999px;
+  }
+  .audience__arc--blue-900 { width: 100%; background: var(--color-blue-900); }
+  .audience__arc--blue-700 { width: 80%;  background: var(--color-blue-700); }
+  .audience__arc--blue-500 { width: 60%;  background: var(--color-blue-500); }
+  .audience__arc--blue-300 { width: 40%;  background: var(--color-blue-300); }
+  .audience__arc--blue-100 { width: 20%;  background: var(--color-blue-100); }
+
+  &:hover .audience__arc { transform: translateX(-4%); }
+}
+
+// --- Conteúdo, em card translúcido para garantir legibilidade sobre os arcos ---
+.audience__content {
+  position: relative;
+  z-index: 1;
+  max-width: 380px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  background: rgba(13, 20, 51, 0.35);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform var(--transition), background var(--transition);
+
+  .audience__panel:hover & {
+    transform: translateY(-4px);
+    background: rgba(13, 20, 51, 0.45);
+  }
+}
+
+.audience__eyebrow {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.audience__title {
+  font-size: var(--fs-4xl);
+  color: #fff;
+}
+
+.audience__text {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--fs-base);
+}
+
+.audience__cta {
+  margin-top: var(--space-3);
+
+  i { font-size: 0.75em; transition: transform var(--transition); }
+  &:hover i { transform: translateX(3px); }
+}

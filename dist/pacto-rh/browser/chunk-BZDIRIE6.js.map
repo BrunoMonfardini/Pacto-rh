@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/profissional/profissional.component.ts"],
+  "sourcesContent": ["import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-profissional',\r\n  standalone: true,\r\n  imports: [],\r\n  template: `<div style=\"padding-top:calc(80px + var(--navbar-height));text-align:center\"><h1>Para Profissionais — em breve</h1></div>`\r\n})\r\nexport class ProfissionalComponent {}"],
+  "mappings": ";;;;;;;;;;;AAQM,IAAO,wBAAP,MAAO,uBAAqB;;;uCAArB,wBAAqB;IAAA;EAAA;;yEAArB,wBAAqB,WAAA,CAAA,CAAA,kBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,GAAA,eAAA,qCAAA,cAAA,QAAA,CAAA,GAAA,UAAA,SAAA,+BAAA,IAAA,KAAA;AAAA,UAAA,KAAA,GAAA;AAFrB,QAAA,yBAAA,GAAA,OAAA,CAAA,EAA6E,GAAA,IAAA;AAAI,QAAA,iBAAA,GAAA,oCAAA;AAA6B,QAAA,uBAAA,EAAK;;;;;;sEAEnH,uBAAqB,CAAA;UANjC;WAAU;MACT,UAAU;MACV,YAAY;MACZ,SAAS,CAAA;MACT,UAAU;KACX;;;;6EACY,uBAAqB,EAAA,WAAA,wBAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

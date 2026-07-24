@@ -54,7 +54,7 @@
     &--active {
       background: var(--color-red);
       width: 24px;
-      border-radius: var(--radius-full);
+      border-radius: var(--radius-pill);
     }
 
     &:hover:not(&--active) {
@@ -161,7 +161,7 @@
   &__stars {
     display: flex;
     gap: 3px;
-    color: var(--color-accent);
+    color: var(--color-red-400);
     font-size: var(--fs-xs);
   }
 }

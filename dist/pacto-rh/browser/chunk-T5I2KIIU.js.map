@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/contact/contact.component.ts"],
+  "sourcesContent": ["import { Component } from '@angular/core';\r\n@Component({ selector: 'app-contact', standalone: true, imports: [], template: `<div style=\"padding:120px 24px;text-align:center\"><h2>ContactComponent — em breve</h2></div>` })\r\nexport class ContactComponent {}"],
+  "mappings": ";;;;;;;;;;;AAEM,IAAO,mBAAP,MAAO,kBAAgB;;;uCAAhB,mBAAgB;IAAA;EAAA;;yEAAhB,mBAAgB,WAAA,CAAA,CAAA,aAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,GAAA,WAAA,cAAA,cAAA,QAAA,CAAA,GAAA,UAAA,SAAA,0BAAA,IAAA,KAAA;AAAA,UAAA,KAAA,GAAA;AADmD,QAAA,yBAAA,GAAA,OAAA,CAAA,EAAkD,GAAA,IAAA;AAAI,QAAA,iBAAA,GAAA,kCAAA;AAA2B,QAAA,uBAAA,EAAK;;;;;;sEACzJ,kBAAgB,CAAA;UAD5B;WAAU,EAAE,UAAU,eAAe,YAAY,MAAM,SAAS,CAAA,GAAI,UAAU,oGAA8F,CAAE;;;;6EAClK,kBAAgB,EAAA,WAAA,mBAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}
