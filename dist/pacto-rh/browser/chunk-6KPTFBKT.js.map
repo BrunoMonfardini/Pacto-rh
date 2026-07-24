@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/blog/blog-list.component.ts"],
+  "sourcesContent": ["import { Component } from '@angular/core';\r\n@Component({ selector: 'app-blog-list', standalone: true, imports: [], template: `<div style=\"padding:120px 24px;text-align:center\"><h2>BlogListComponent — em breve</h2></div>` })\r\nexport class BlogListComponent {}"],
+  "mappings": ";;;;;;;;;;;AAEM,IAAO,oBAAP,MAAO,mBAAiB;;;uCAAjB,oBAAiB;IAAA;EAAA;;yEAAjB,oBAAiB,WAAA,CAAA,CAAA,eAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,GAAA,WAAA,cAAA,cAAA,QAAA,CAAA,GAAA,UAAA,SAAA,2BAAA,IAAA,KAAA;AAAA,UAAA,KAAA,GAAA;AADoD,QAAA,yBAAA,GAAA,OAAA,CAAA,EAAkD,GAAA,IAAA;AAAI,QAAA,iBAAA,GAAA,mCAAA;AAA4B,QAAA,uBAAA,EAAK;;;;;;sEAC5J,mBAAiB,CAAA;UAD7B;WAAU,EAAE,UAAU,iBAAiB,YAAY,MAAM,SAAS,CAAA,GAAI,UAAU,qGAA+F,CAAE;;;;6EACrK,mBAAiB,EAAA,WAAA,qBAAA,UAAA,gDAAA,YAAA,EAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}

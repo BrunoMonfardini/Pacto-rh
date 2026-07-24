@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/layout/public-layout.component.ts"],
+  "sourcesContent": ["\n    main {\n      min-height: calc(100vh - var(--navbar-height));\n    }\n  "],
+  "mappings": ";AACI;AACE,cAAA,KAAA,MAAA,EAAA,IAAA;;",
+  "names": []
+}

@@ -1,13 +1,18 @@
-<!-- Hero minimalista: fundo branco, muito espaço negativo, logo em destaque
-     e barras decorativas discretas em azul/vermelho ecoando a marca -->
+<!-- Hero: fundo em vinheta cinza com um brilho degradê azul → vermelho
+     centralizado atrás do conteúdo (glow com blur + camada nítida por cima) -->
 <section class="hero" id="home">
 
-  <div class="hero__bars" aria-hidden="true">
-    <span class="hero__bar hero__bar--blue-1"></span>
-    <span class="hero__bar hero__bar--blue-2"></span>
-    <span class="hero__bar hero__bar--neutral"></span>
-    <span class="hero__bar hero__bar--red-2"></span>
-    <span class="hero__bar hero__bar--red-1"></span>
+  <div class="hero__glow" aria-hidden="true">
+    <div class="hero__glow-row hero__glow-row--blur">
+      @for (color of glowBars; track $index) {
+        <span class="hero__glow-bar" [style.background]="color"></span>
+      }
+    </div>
+    <div class="hero__glow-row hero__glow-row--crisp">
+      @for (color of glowBars; track $index) {
+        <span class="hero__glow-bar" [style.background]="color"></span>
+      }
+    </div>
   </div>
 
   <div class="container hero__content" appScrollReveal>

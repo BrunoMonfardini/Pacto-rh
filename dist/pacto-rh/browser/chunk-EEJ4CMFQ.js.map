@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/features/disc/disc.component.ts"],
+  "sourcesContent": ["import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-disc',\r\n  standalone: true,\r\n  imports: [],\r\n  template: `<div style=\"padding-top:calc(80px + var(--navbar-height));text-align:center\"><h1>DISC — em breve</h1></div>`\r\n})\r\nexport class DiscComponent {}"],
+  "mappings": ";;;;;;;;;;;AAQM,IAAO,gBAAP,MAAO,eAAa;;;uCAAb,gBAAa;IAAA;EAAA;;yEAAb,gBAAa,WAAA,CAAA,CAAA,UAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,GAAA,eAAA,qCAAA,cAAA,QAAA,CAAA,GAAA,UAAA,SAAA,uBAAA,IAAA,KAAA;AAAA,UAAA,KAAA,GAAA;AAFb,QAAA,yBAAA,GAAA,OAAA,CAAA,EAA6E,GAAA,IAAA;AAAI,QAAA,iBAAA,GAAA,sBAAA;AAAe,QAAA,uBAAA,EAAK;;;;;;sEAErG,eAAa,CAAA;UANzB;WAAU;MACT,UAAU;MACV,YAAY;MACZ,SAAS,CAAA;MACT,UAAU;KACX;;;;6EACY,eAAa,EAAA,WAAA,iBAAA,UAAA,2CAAA,YAAA,EAAA,CAAA;AAAA,GAAA;",
+  "names": []
+}
