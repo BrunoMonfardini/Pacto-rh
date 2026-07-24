@@ -1,0 +1,35 @@
+<app-section [padding]="'lg'" [containerSize]="'sm'">
+  @if (loading()) {
+    <p class="text-center text-muted">Carregando post…</p>
+  } @else if (errorMessage(); as message) {
+    <p class="text-center form-error">{{ message }}</p>
+    <p class="text-center" style="margin-top: var(--space-6);">
+      <a routerLink="/blog">Voltar para o blog</a>
+    </p>
+  } @else if (post(); as post) {
+    <article>
+      @if (post.coverImage) {
+        <img [src]="post.coverImage" [alt]="post.title" class="blog-detail__cover" />
+      }
+
+      @if (post.tags.length > 0) {
+        <div class="blog-detail__tags">
+          @for (tag of post.tags; track tag) {
+            <span class="blog-card__tag">{{ tag }}</span>
+          }
+        </div>
+      }
+
+      <h1 class="section-title">{{ post.title }}</h1>
+      <p class="blog-detail__meta">
+        {{ post.publishedAt | date: 'dd/MM/yyyy' }} · {{ post.readingTime }} min de leitura
+      </p>
+
+      <div class="blog-detail__content" [innerHTML]="post.content"></div>
+
+      <p class="auth-card__footer">
+        <a routerLink="/blog">← Voltar para o blog</a>
+      </p>
+    </article>
+  }
+</app-section>

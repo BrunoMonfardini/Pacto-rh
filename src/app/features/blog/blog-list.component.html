@@ -1,0 +1,47 @@
+<app-section [padding]="'lg'">
+  <div class="section-header section-header--center">
+    <span class="section-tag">Blog</span>
+    <h1 class="section-title">Conteúdo para desenvolvimento humano</h1>
+    <p class="section-subtitle mx-auto">
+      Artigos sobre gestão de pessoas, liderança e autoconhecimento.
+    </p>
+  </div>
+
+  @if (loading()) {
+    <p class="text-center text-muted">Carregando posts…</p>
+  } @else if (errorMessage()) {
+    <p class="text-center form-error">{{ errorMessage() }}</p>
+  } @else if (posts().length === 0) {
+    <p class="text-center text-muted">Nenhum post publicado ainda.</p>
+  } @else {
+    <div class="grid-3">
+      @for (post of posts(); track post.id; let i = $index) {
+        <article class="card card--hoverable blog-card" appScrollReveal [revealDelay]="i * 80">
+          @if (post.coverImage) {
+            <img [src]="post.coverImage" [alt]="post.title" class="blog-card__cover" />
+          }
+
+          @if (post.tags.length > 0) {
+            <div class="blog-card__tags">
+              @for (tag of post.tags; track tag) {
+                <span class="blog-card__tag">{{ tag }}</span>
+              }
+            </div>
+          }
+
+          <h2 class="blog-card__title">{{ post.title }}</h2>
+          <p class="blog-card__excerpt">{{ post.excerpt }}</p>
+
+          <p class="blog-card__meta">
+            {{ post.publishedAt | date: 'dd/MM/yyyy' }} · {{ post.readingTime }} min de leitura
+          </p>
+
+          <app-button class="blog-card__cta" [link]="'/blog/' + post.slug">
+            Ler mais
+            <i class="fas fa-arrow-right"></i>
+          </app-button>
+        </article>
+      }
+    </div>
+  }
+</app-section>

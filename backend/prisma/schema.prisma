@@ -1,0 +1,128 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  editor
+  customer
+}
+
+model User {
+  id           String     @id @default(uuid())
+  name         String
+  email        String     @unique
+  passwordHash String
+  roles        Role[]     @default([customer])
+  avatar       String?
+  createdAt    DateTime   @default(now())
+
+  emailVerifiedAt      DateTime?
+  emailVerifyToken     String?
+  emailVerifyExpiresAt DateTime?
+  resetToken           String?
+  resetTokenExpiresAt  DateTime?
+
+  orders       Order[]
+  posts        BlogPost[]
+  refreshTokens RefreshToken[]
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  tokenHash String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime @default(now())
+}
+
+model BlogPost {
+  id          String    @id @default(uuid())
+  title       String
+  slug        String    @unique
+  excerpt     String?
+  content     String?
+  coverImage  String?
+  authorId    String?
+  author      User?     @relation(fields: [authorId], references: [id])
+  publishedAt DateTime?
+  readingTime Int?
+  tags        String[]
+  createdAt   DateTime  @default(now())
+}
+
+model Product {
+  id              String      @id @default(uuid())
+  slug            String      @unique
+  name            String
+  description     String?
+  longDescription String?
+  coverImage      String?
+  price           Int
+  originalPrice   Int?
+  type            String
+  topics          String[]
+  benefits        String[]
+  featured        Boolean     @default(false)
+  orderItems      OrderItem[]
+}
+
+enum OrderStatus {
+  pending
+  paid
+  shipped
+  delivered
+  cancelled
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  status          OrderStatus @default(pending)
+  total           Int
+  paymentMethodId String?
+
+  street       String
+  number       String
+  complement   String?
+  neighborhood String
+  city         String
+  state        String
+  zipCode      String
+
+  createdAt DateTime    @default(now())
+  items     OrderItem[]
+}
+
+model OrderItem {
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  unitPrice Int
+
+  @@id([orderId, productId])
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  company   String?
+  createdAt DateTime @default(now())
+}
