@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/about/about.component.ts"],
-  "sourcesContent": ["import { Component } from '@angular/core';\r\n@Component({ selector: 'app-about', standalone: true, imports: [], template: `<div style=\"padding:120px 24px;text-align:center\"><h2>AboutComponent — em breve</h2></div>` })\r\nexport class AboutComponent {}"],
-  "mappings": ";;;;;;;;;;;AAEM,IAAO,iBAAP,MAAO,gBAAc;;;uCAAd,iBAAc;IAAA;EAAA;;yEAAd,iBAAc,WAAA,CAAA,CAAA,WAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,GAAA,WAAA,cAAA,cAAA,QAAA,CAAA,GAAA,UAAA,SAAA,wBAAA,IAAA,KAAA;AAAA,UAAA,KAAA,GAAA;AADmD,QAAA,yBAAA,GAAA,OAAA,CAAA,EAAkD,GAAA,IAAA;AAAI,QAAA,iBAAA,GAAA,gCAAA;AAAyB,QAAA,uBAAA,EAAK;;;;;;sEACrJ,gBAAc,CAAA;UAD1B;WAAU,EAAE,UAAU,aAAa,YAAY,MAAM,SAAS,CAAA,GAAI,UAAU,kGAA4F,CAAE;;;;6EAC9J,gBAAc,EAAA,WAAA,kBAAA,UAAA,6CAAA,YAAA,EAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}

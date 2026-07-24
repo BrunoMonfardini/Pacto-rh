@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/features/blog/blog-detail.component.ts"],
-  "sourcesContent": ["import { Component } from '@angular/core';\r\n@Component({ selector: 'app-blog-detail', standalone: true, imports: [], template: `<div style=\"padding:120px 24px;text-align:center\"><h2>BlogDetailComponent — em breve</h2></div>` })\r\nexport class BlogDetailComponent {}"],
-  "mappings": ";;;;;;;;;;;AAEM,IAAO,sBAAP,MAAO,qBAAmB;;;uCAAnB,sBAAmB;IAAA;EAAA;;yEAAnB,sBAAmB,WAAA,CAAA,CAAA,iBAAA,CAAA,GAAA,OAAA,GAAA,MAAA,GAAA,QAAA,CAAA,CAAA,GAAA,WAAA,cAAA,cAAA,QAAA,CAAA,GAAA,UAAA,SAAA,6BAAA,IAAA,KAAA;AAAA,UAAA,KAAA,GAAA;AADoD,QAAA,yBAAA,GAAA,OAAA,CAAA,EAAkD,GAAA,IAAA;AAAI,QAAA,iBAAA,GAAA,qCAAA;AAA8B,QAAA,uBAAA,EAAK;;;;;;sEAChK,qBAAmB,CAAA;UAD/B;WAAU,EAAE,UAAU,mBAAmB,YAAY,MAAM,SAAS,CAAA,GAAI,UAAU,uGAAiG,CAAE;;;;6EACzK,qBAAmB,EAAA,WAAA,uBAAA,UAAA,kDAAA,YAAA,EAAA,CAAA;AAAA,GAAA;",
-  "names": []
-}
