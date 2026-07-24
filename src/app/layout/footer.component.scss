@@ -27,6 +27,7 @@
   &__logo-icon {
     height: 40px;
     width: auto;
+    filter: brightness(0) invert(1);
   }
 
   &__logo-text {
@@ -72,7 +73,7 @@
       gap: var(--space-3);
 
       i {
-        color: var(--color-primary);
+        color: var(--color-red-400);
         margin-top: 3px;
         width: 14px;
         flex-shrink: 0;
@@ -91,7 +92,7 @@
     transition: color var(--transition), padding-left var(--transition);
 
     &:hover {
-      color: var(--color-primary);
+      color: var(--color-blue-300);
       padding-left: var(--space-2);
     }
   }

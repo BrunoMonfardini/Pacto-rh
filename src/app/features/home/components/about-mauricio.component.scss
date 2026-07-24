@@ -1,14 +1,10 @@
-.about-mauricio {
-  background: var(--color-bg);
-}
-
 .mauricio-card {
   display: flex;
   align-items: stretch;
   background: var(--color-bg-dark);
-  border-radius: var(--radius-2xl);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -16,8 +12,8 @@
 }
 
 .mauricio-card__photo {
-  flex: 0 0 40%;
-  min-height: 360px;
+  flex: 0 0 38%;
+  min-height: 340px;
 
   img {
     width: 100%;
@@ -26,57 +22,56 @@
     object-position: top center;
   }
 
-  @media (max-width: 768px) { min-height: 320px; }
+  @media (max-width: 768px) { min-height: 300px; }
 }
 
 .mauricio-card__body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
-  gap: var(--space-4);
-  padding: var(--space-12);
+  gap: var(--space-5);
+  padding: var(--space-10);
   color: #fff;
 
   @media (max-width: 768px) { padding: var(--space-8); }
 }
 
-.mauricio-card__title {
-  font-size: clamp(var(--fs-2xl), 3vw, var(--fs-3xl));
+.mauricio-card__name {
+  font-size: var(--fs-2xl);
   color: #fff;
+  margin-bottom: var(--space-1);
+}
+
+.mauricio-card__role {
+  font-family: var(--font-heading);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-red-400);
 }
 
 .mauricio-card__text {
   color: rgba(255, 255, 255, 0.75);
-  font-size: var(--fs-md);
+  font-size: var(--fs-base);
   line-height: 1.8;
 }
 
-// --- Divisor decorativo: cápsulas em degradê, azul → vermelho ---
-.brand-divider {
+.mauricio-card__highlights {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  max-width: 1000px;
-  margin: var(--space-16) auto 0;
-  padding-inline: var(--space-6);
-}
+  flex-wrap: wrap;
+  gap: var(--space-3);
 
-.brand-divider__bar {
-  height: 20px;
-  border-radius: var(--radius-pill);
-  opacity: 0.92;
+  li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.08);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+  }
 
-  &--blue-900 { background: var(--color-blue-900); }
-  &--blue-700 { background: var(--color-blue-700); }
-  &--blue-500 { background: var(--color-blue-500); }
-  &--blue-300 { background: var(--color-blue-300); }
-  &--blue-100 { background: var(--color-blue-100); }
-  &--neutral  { background: #c8c8c8; }
-  &--red-100  { background: var(--color-red-100); }
-  &--red-300  { background: var(--color-red-300); }
-  &--red-500  { background: var(--color-red-500); }
-  &--red-700  { background: var(--color-red-700); }
-  &--red-900  { background: var(--color-red-900); }
+  i { color: var(--color-red-400); }
 }

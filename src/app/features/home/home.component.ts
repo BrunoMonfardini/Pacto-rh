@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HeroComponent }          from './components/hero.component';
 import { AudienceSplitComponent } from './components/audience-split.component';
 import { AboutMauricioComponent } from './components/about-mauricio.component';
-import { TestimonialsComponent }  from './components/testimonials.component';
+import { AboutPactorhComponent }  from './components/about-pactorh.component';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +11,13 @@ import { TestimonialsComponent }  from './components/testimonials.component';
     HeroComponent,
     AudienceSplitComponent,
     AboutMauricioComponent,
-    TestimonialsComponent,
+    AboutPactorhComponent,
   ],
   template: `
     <app-hero />
     <app-audience-split />
     <app-about-mauricio />
-    <app-testimonials />
+    <app-about-pactorh />
   `,
 })
 export class HomeComponent {}

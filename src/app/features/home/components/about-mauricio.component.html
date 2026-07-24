@@ -1,9 +1,13 @@
-<!-- Bio do fundador em card escuro + divisor decorativo de cápsulas
-     que faz a transição de cor (azul → vermelho) até a próxima seção -->
-<section class="about-mauricio section">
+<!-- Seção Sobre — Parte 1: bio do fundador -->
+<section class="mauricio section" id="sobre">
   <div class="container">
-    <div class="mauricio-card">
 
+    <div class="section-header section-header--center" appScrollReveal>
+      <span class="section-tag">Sobre</span>
+      <h2 class="section-title">Quem está por trás da PactoRH</h2>
+    </div>
+
+    <div class="mauricio-card" appScrollReveal>
       <div class="mauricio-card__photo">
         <img
           src="assets/images/foto-mauricio/0001.jpg"
@@ -12,38 +16,25 @@
       </div>
 
       <div class="mauricio-card__body">
-        <span class="section-tag">Sobre o fundador</span>
-        <h2 class="mauricio-card__title">
-          Maurício <span class="text-red">Pacto</span>
-        </h2>
+        <div>
+          <h3 class="mauricio-card__name">Maurício Pacto</h3>
+          <span class="mauricio-card__role">Fundador &amp; CEO da PactoRH</span>
+        </div>
+
         <p class="mauricio-card__text">
-          Com mais de duas décadas de atuação em Gestão de Pessoas, Maurício
-          fundou a PactoRH para unir experiência corporativa e desenvolvimento
-          humano em um só propósito: ajudar empresas e profissionais a
-          alcançarem seu potencial máximo através de treinamentos práticos,
-          mentorias e ferramentas de autoconhecimento como o teste DISC.
+          Com mais de duas décadas em Gestão de Pessoas, Maurício fundou a
+          PactoRH para unir experiência corporativa e desenvolvimento humano
+          em um só propósito: ajudar empresas e profissionais a alcançarem
+          seu potencial máximo.
         </p>
-        <a routerLink="/sobre" class="btn btn--outline-white btn--pill">
-          Conhecer a história
-          <i class="fas fa-arrow-right"></i>
-        </a>
+
+        <ul class="mauricio-card__highlights">
+          <li><i class="fas fa-award"></i>+20 anos de experiência em RH</li>
+          <li><i class="fas fa-building"></i>+500 empresas atendidas</li>
+          <li><i class="fas fa-certificate"></i>Especialista em DISC</li>
+        </ul>
       </div>
-
     </div>
-  </div>
 
-  <!-- Divisor decorativo: cápsulas em degradê azul → vermelho -->
-  <div class="brand-divider" aria-hidden="true">
-    <span class="brand-divider__bar brand-divider__bar--blue-900"></span>
-    <span class="brand-divider__bar brand-divider__bar--blue-700"></span>
-    <span class="brand-divider__bar brand-divider__bar--blue-500"></span>
-    <span class="brand-divider__bar brand-divider__bar--blue-300"></span>
-    <span class="brand-divider__bar brand-divider__bar--blue-100"></span>
-    <span class="brand-divider__bar brand-divider__bar--neutral"></span>
-    <span class="brand-divider__bar brand-divider__bar--red-100"></span>
-    <span class="brand-divider__bar brand-divider__bar--red-300"></span>
-    <span class="brand-divider__bar brand-divider__bar--red-500"></span>
-    <span class="brand-divider__bar brand-divider__bar--red-700"></span>
-    <span class="brand-divider__bar brand-divider__bar--red-900"></span>
   </div>
 </section>

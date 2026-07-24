@@ -1,0 +1,68 @@
+.pactorh-info__intro {
+  max-width: 640px;
+  margin: 0 auto var(--space-12);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.pactorh-info__mark {
+  width: 56px;
+  height: auto;
+  opacity: 0.85;
+}
+
+.pactorh-info__text {
+  font-size: var(--fs-md);
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+.pactorh-info__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+
+  @media (min-width: 640px)  { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
+}
+
+.pillar-card {
+  padding: var(--space-8) var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.pillar-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-4);
+  border-radius: 50%;
+  background: var(--color-blue-100);
+  color: var(--color-primary);
+  font-size: var(--fs-lg);
+}
+
+.pillar-card__title {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-2);
+}
+
+.pillar-card__text {
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+  line-height: 1.7;
+}

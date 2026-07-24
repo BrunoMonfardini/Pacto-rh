@@ -1,46 +1,25 @@
-<!-- Header minimalista exatamente como no Figma:
-     logo pequena à esquerda | nav central | hamburger à direita -->
+<!-- Navbar fixa, minimalista: logo à esquerda | nav central | hamburger à direita -->
 <header class="header">
   <div class="container header__inner">
 
-    <!-- Logo pequena à esquerda -->
-    <a routerLink="/" class="header__logo" (click)="closeMobile()">
+    <a routerLink="/" fragment="home" class="header__logo" (click)="closeMobile()">
       <img src="assets/images/logo-pacto-rh/logo_sem_fundo.png"
            alt="PactoRH"
            class="header__logo-img" />
     </a>
 
-    <!-- Nav central (desktop) -->
     <nav class="header__nav">
-
-      <!-- Dropdown Soluções -->
-      <div class="nav-item" (mouseenter)="isDropdownOpen.set(true)" (mouseleave)="closeDropdown()">
-        <button class="nav-link" [class.nav-link--open]="isDropdownOpen()">
-          Soluções
-          <i class="fas fa-chevron-down nav-link__icon"></i>
-        </button>
-        @if (isDropdownOpen()) {
-          <div class="dropdown">
-            <a routerLink="/empresa"      class="dropdown__item" (click)="closeDropdown()">Para Empresas</a>
-            <a routerLink="/profissional" class="dropdown__item" (click)="closeDropdown()">Para Profissionais</a>
-          </div>
-        }
-      </div>
-
-      <!-- Sobre (com dropdown interno) -->
-      <div class="nav-item">
-        <a routerLink="/sobre" class="nav-link" routerLinkActive="nav-link--active">
-          Sobre
-          <i class="fas fa-chevron-down nav-link__icon"></i>
-        </a>
-      </div>
-
-      <a routerLink="/disc"    class="nav-link" routerLinkActive="nav-link--active">DISC</a>
-      <a routerLink="/contato" class="nav-link" routerLinkActive="nav-link--active">Contato</a>
+      @for (item of navItems; track item.label) {
+        <a
+          [routerLink]="item.route"
+          [fragment]="item.fragment"
+          class="nav-link"
+        >{{ item.label }}</a>
+      }
     </nav>
 
-    <!-- Hamburger à direita (mobile) -->
     <button
+      type="button"
       class="header__hamburger"
       (click)="toggleMobile()"
       [attr.aria-expanded]="isMobileOpen()"
@@ -53,15 +32,16 @@
 
   </div>
 
-  <!-- Menu mobile -->
   <nav class="mobile-menu" [class.mobile-menu--open]="isMobileOpen()">
     <div class="container">
-      <a routerLink="/"            class="mobile-menu__link" (click)="closeMobile()">Home</a>
-      <a routerLink="/empresa"     class="mobile-menu__link" (click)="closeMobile()">Para Empresas</a>
-      <a routerLink="/profissional"class="mobile-menu__link" (click)="closeMobile()">Para Profissionais</a>
-      <a routerLink="/disc"        class="mobile-menu__link" (click)="closeMobile()">DISC</a>
-      <a routerLink="/sobre"       class="mobile-menu__link" (click)="closeMobile()">Sobre</a>
-      <a routerLink="/contato"     class="mobile-menu__link" (click)="closeMobile()">Contato</a>
+      @for (item of navItems; track item.label) {
+        <a
+          [routerLink]="item.route"
+          [fragment]="item.fragment"
+          class="mobile-menu__link"
+          (click)="closeMobile()"
+        >{{ item.label }}</a>
+      }
     </div>
   </nav>
 </header>

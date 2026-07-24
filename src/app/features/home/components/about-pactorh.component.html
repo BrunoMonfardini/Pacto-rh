@@ -1,0 +1,31 @@
+<!-- Seção Sobre — Parte 2: apresentação institucional da PactoRH -->
+<section class="pactorh-info section section--sm">
+  <div class="container">
+
+    <div class="pactorh-info__intro" appScrollReveal>
+      <img
+        src="assets/images/logo-pacto-rh/logo_preto_sem_nome_sem_fundo.png"
+        alt=""
+        class="pactorh-info__mark"
+      />
+      <p class="pactorh-info__text">
+        Fundada para unir a experiência de mercado com metodologias
+        humanizadas de desenvolvimento, a PactoRH nasceu do propósito de
+        transformar a relação entre empresas e pessoas.
+      </p>
+    </div>
+
+    <div class="pactorh-info__grid">
+      @for (pillar of pillars; track pillar.title; let i = $index) {
+        <div class="pillar-card" appScrollReveal [revealDelay]="i * 100">
+          <div class="pillar-card__icon">
+            <i class="fas" [class]="pillar.icon"></i>
+          </div>
+          <h3 class="pillar-card__title">{{ pillar.title }}</h3>
+          <p class="pillar-card__text">{{ pillar.text }}</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

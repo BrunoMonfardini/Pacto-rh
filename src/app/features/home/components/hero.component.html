@@ -1,38 +1,29 @@
-<!-- Hero fiel ao Figma:
-     fundo cinza claro, logo PactoRH grande centralizada,
-     colunas arredondadas azuis e vermelhas na base como decoração -->
-<section class="hero">
+<!-- Hero minimalista: fundo branco, muito espaço negativo, logo em destaque
+     e barras decorativas discretas em azul/vermelho ecoando a marca -->
+<section class="hero" id="home">
 
-  <!-- Colunas decorativas (como no Figma — azuis e vermelhas arredondadas) -->
-  <div class="hero__columns" aria-hidden="true">
-    <div class="hero__col hero__col--blue-800"></div>
-    <div class="hero__col hero__col--blue-600"></div>
-    <div class="hero__col hero__col--blue-400"></div>
-    <div class="hero__col hero__col--blue-200"></div>
-    <div class="hero__col hero__col--center"></div>
-    <div class="hero__col hero__col--red-200"></div>
-    <div class="hero__col hero__col--red-400"></div>
-    <div class="hero__col hero__col--red-600"></div>
-    <div class="hero__col hero__col--red-800"></div>
+  <div class="hero__bars" aria-hidden="true">
+    <span class="hero__bar hero__bar--blue-1"></span>
+    <span class="hero__bar hero__bar--blue-2"></span>
+    <span class="hero__bar hero__bar--neutral"></span>
+    <span class="hero__bar hero__bar--red-2"></span>
+    <span class="hero__bar hero__bar--red-1"></span>
   </div>
 
-  <!-- Conteúdo centralizado por cima das colunas -->
-  <div class="container hero__content">
+  <div class="container hero__content" appScrollReveal>
+    <img
+      src="assets/images/logo-pacto-rh/logo_sem_fundo.png"
+      alt="PactoRH — Treinamento e Desenvolvimento Pessoal"
+      class="hero__logo"
+    />
 
-    <!-- Logo grande centralizada (já traz o wordmark + tagline embutidos na arte) -->
-    <div class="hero__logo-wrap">
-      <img
-        src="assets/images/logo-pacto-rh/logo_sem_fundo.png"
-        alt="PactoRH — Treinamento e Desenvolvimento Pessoal"
-        class="hero__logo"
-      />
-    </div>
+    <p class="hero__lead">
+      Desenvolvimento humano e performance corporativa em um só lugar.
+    </p>
 
-    <!-- Dois CTAs -->
-    <div class="hero__actions">
-      <a routerLink="/empresa"      class="btn btn--primary btn--lg">Para Empresas</a>
-      <a routerLink="/profissional" class="btn btn--red btn--lg">Para Profissionais</a>
-    </div>
-
+    <a routerLink="/" fragment="solucoes" class="hero__scroll-cue">
+      Conheça nossas soluções
+      <i class="fas fa-chevron-down"></i>
+    </a>
   </div>
 </section>

@@ -1,53 +1,46 @@
-<!-- Split Empresa (vermelho) | Profissional (azul), com arcos concêntricos
-     nascendo das bordas externas em direção ao centro, ecoando as cores do logo -->
-<section class="audience">
+<!-- Seção Soluções: dois públicos atendidos pela PactoRH, lado a lado -->
+<section class="solutions section" id="solucoes">
+  <div class="container">
 
-  <a routerLink="/empresa" class="audience__panel audience__panel--red">
-    <div class="audience__arcs" aria-hidden="true">
-      <span class="audience__arc audience__arc--red-900"></span>
-      <span class="audience__arc audience__arc--red-700"></span>
-      <span class="audience__arc audience__arc--red-500"></span>
-      <span class="audience__arc audience__arc--red-300"></span>
-      <span class="audience__arc audience__arc--red-100"></span>
-    </div>
-
-    <div class="audience__content">
-      <span class="audience__eyebrow">Soluções corporativas</span>
-      <h2 class="audience__title">Empresa</h2>
-      <p class="audience__text">
-        Programas de treinamento e desenvolvimento para elevar a performance
-        e o engajamento das suas equipes.
+    <div class="section-header section-header--center" appScrollReveal>
+      <span class="section-tag">Soluções</span>
+      <h2 class="section-title">Para cada etapa da sua jornada</h2>
+      <p class="section-subtitle mx-auto">
+        Treinamentos para empresas e ferramentas de desenvolvimento para
+        profissionais, com o mesmo compromisso: gerar resultado real.
       </p>
-      <span class="btn btn--outline-white btn--pill audience__cta">
-        Conhecer soluções
-        <i class="fas fa-arrow-right"></i>
-      </span>
-    </div>
-  </a>
-
-  <div class="audience__divider" aria-hidden="true"></div>
-
-  <a routerLink="/profissional" class="audience__panel audience__panel--blue">
-    <div class="audience__arcs" aria-hidden="true">
-      <span class="audience__arc audience__arc--blue-900"></span>
-      <span class="audience__arc audience__arc--blue-700"></span>
-      <span class="audience__arc audience__arc--blue-500"></span>
-      <span class="audience__arc audience__arc--blue-300"></span>
-      <span class="audience__arc audience__arc--blue-100"></span>
     </div>
 
-    <div class="audience__content">
-      <span class="audience__eyebrow">Desenvolvimento pessoal</span>
-      <h2 class="audience__title">Profissional</h2>
-      <p class="audience__text">
-        Conteúdos, mentorias e o teste DISC para impulsionar sua carreira
-        e o seu autoconhecimento.
-      </p>
-      <span class="btn btn--outline-white btn--pill audience__cta">
-        Conhecer conteúdos
-        <i class="fas fa-arrow-right"></i>
-      </span>
-    </div>
-  </a>
+    <div class="solutions__grid">
+      @for (item of audiences; track item.title; let i = $index) {
+        <article
+          class="audience-card"
+          [class]="'audience-card--' + item.color"
+          appScrollReveal
+          [revealDelay]="i * 120"
+        >
+          <div class="audience-card__icon">
+            <i class="fas" [class]="item.icon"></i>
+          </div>
 
+          <h3 class="audience-card__title">{{ item.title }}</h3>
+          <p class="audience-card__text">{{ item.description }}</p>
+
+          <ul class="audience-card__benefits">
+            @for (benefit of item.benefits; track benefit) {
+              <li><i class="fas fa-check"></i>{{ benefit }}</li>
+            }
+          </ul>
+
+          <a [routerLink]="item.route" class="btn audience-card__cta"
+             [class.btn--red]="item.color === 'red'"
+             [class.btn--primary]="item.color === 'blue'">
+            {{ item.cta }}
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+      }
+    </div>
+
+  </div>
 </section>
