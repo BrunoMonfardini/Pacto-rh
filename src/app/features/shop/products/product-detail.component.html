@@ -1,0 +1,65 @@
+<app-section [padding]="'lg'" [containerSize]="'sm'">
+  @if (loading()) {
+    <p class="text-center text-muted">Carregando produto…</p>
+  } @else {
+    @if (errorMessage(); as message) {
+      <p class="text-center form-error">{{ message }}</p>
+      <p class="text-center product-detail__back-link">
+        <a routerLink="/produtos">Voltar para a loja</a>
+      </p>
+    } @else {
+      @if (product(); as product) {
+        <article>
+          @if (product.coverImage) {
+            <img [src]="product.coverImage" [alt]="product.name" class="product-detail__cover" />
+          }
+
+          <span class="product-card__type">{{ typeLabel(product.type) }}</span>
+          <h1 class="section-title">{{ product.name }}</h1>
+          <p class="section-subtitle">{{ product.description }}</p>
+
+          <p class="product-detail__price">
+            @if (product.originalPrice) {
+              <span class="product-card__original-price">{{ formatPrice(product.originalPrice) }}</span>
+            }
+            {{ formatPrice(product.price) }}
+          </p>
+
+          <app-button (clicked)="addToCart()">
+            {{ added() ? 'Adicionado ✓' : 'Adicionar ao carrinho' }}
+          </app-button>
+
+          @if (product.longDescription) {
+            <p class="product-detail__long-description">{{ product.longDescription }}</p>
+          }
+
+          @if (product.topics.length > 0) {
+            <div class="product-detail__block">
+              <h2 class="product-detail__block-title">O que você vai aprender</h2>
+              <ul class="product-detail__list">
+                @for (topic of product.topics; track topic) {
+                  <li><i class="fas fa-check"></i>{{ topic }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          @if (product.benefits.length > 0) {
+            <div class="product-detail__block">
+              <h2 class="product-detail__block-title">Benefícios</h2>
+              <ul class="product-detail__list">
+                @for (benefit of product.benefits; track benefit) {
+                  <li><i class="fas fa-star"></i>{{ benefit }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          <p class="auth-card__footer">
+            <a routerLink="/produtos">← Voltar para a loja</a>
+          </p>
+        </article>
+      }
+    }
+  }
+</app-section>

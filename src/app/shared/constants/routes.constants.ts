@@ -7,6 +7,7 @@ export const ROUTES = {
   sobre: '/sobre',
   contato: '/contato',
   blog: '/blog',
+  produtos: '/produtos',
   login: '/auth/login',
   register: '/auth/register',
 } as const;

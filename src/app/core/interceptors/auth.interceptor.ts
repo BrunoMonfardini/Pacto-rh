@@ -20,7 +20,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(authReq).pipe(
     catchError((error) => {
-      if (error.status === 401) {
+      // Só desloga automaticamente quando havia um token anexado e ele foi rejeitado
+      // (sessão expirada/inválida). Um 401 sem token — ex: senha errada em /auth/login —
+      // é um erro de negócio normal que o próprio formulário já trata, não uma sessão expirada.
+      if (error.status === 401 && token) {
         authService.logout({ revoke: false });
       }
       return throwError(() => error);

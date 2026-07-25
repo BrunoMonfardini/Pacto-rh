@@ -30,7 +30,7 @@ export class CartService {
     this.update(next);
   }
 
-  updateQuantity(productId: number, quantity: number): void {
+  updateQuantity(productId: string, quantity: number): void {
     if (quantity <= 0) {
       this.remove(productId);
       return;
@@ -38,7 +38,7 @@ export class CartService {
     this.update(this._items().map((item) => (item.product.id === productId ? { ...item, quantity } : item)));
   }
 
-  remove(productId: number): void {
+  remove(productId: string): void {
     this.update(this._items().filter((item) => item.product.id !== productId));
   }
 

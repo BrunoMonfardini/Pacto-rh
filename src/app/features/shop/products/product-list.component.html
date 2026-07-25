@@ -1,0 +1,49 @@
+<app-section [padding]="'lg'">
+  <div class="section-header section-header--center">
+    <span class="section-tag">Loja</span>
+    <h1 class="section-title">E-books, cursos e mentorias</h1>
+    <p class="section-subtitle mx-auto">
+      Ferramentas práticas para impulsionar sua carreira e seu autoconhecimento.
+    </p>
+  </div>
+
+  @if (loading()) {
+    <p class="text-center text-muted">Carregando produtos…</p>
+  } @else if (errorMessage()) {
+    <p class="text-center form-error">{{ errorMessage() }}</p>
+  } @else if (products().length === 0) {
+    <p class="text-center text-muted">Nenhum produto disponível no momento.</p>
+  } @else {
+    <div class="grid-3">
+      @for (product of products(); track product.id; let i = $index) {
+        <article class="card card--hoverable product-card" appScrollReveal [revealDelay]="i * 80">
+          @if (product.coverImage) {
+            <img [src]="product.coverImage" [alt]="product.name" class="product-card__cover" />
+          }
+
+          <div class="product-card__body">
+            <span class="product-card__type">{{ typeLabel(product.type) }}</span>
+            <h2 class="product-card__title">{{ product.name }}</h2>
+            <p class="product-card__description">{{ product.description }}</p>
+
+            <p class="product-card__price">
+              @if (product.originalPrice) {
+                <span class="product-card__original-price">{{ formatPrice(product.originalPrice) }}</span>
+              }
+              {{ formatPrice(product.price) }}
+            </p>
+
+            <div class="product-card__actions">
+              <app-button [link]="'/produtos/' + product.slug" variant="outline-blue" size="sm">
+                Ver detalhes
+              </app-button>
+              <app-button size="sm" (clicked)="addToCart(product)">
+                {{ addedProductId() === product.id ? 'Adicionado ✓' : 'Adicionar ao carrinho' }}
+              </app-button>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</app-section>

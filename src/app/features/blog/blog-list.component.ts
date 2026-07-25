@@ -3,7 +3,6 @@ import { DatePipe } from '@angular/common';
 import { BlogRepository } from '../../core/repositories/blog.repository';
 import { BlogPost } from '../../core/models';
 import { SectionComponent } from '../../shared/components/section.component';
-import { CardComponent } from '../../shared/components/card.component';
 import { ButtonComponent } from '../../shared/components/button.component';
 import { ScrollRevealDirective } from '../../shared/directives/scroll-reveal.directive';
 import { extractErrorMessage } from '../../core/utils/http-error.util';
@@ -11,7 +10,7 @@ import { extractErrorMessage } from '../../core/utils/http-error.util';
 @Component({
   selector: 'app-blog-list',
   standalone: true,
-  imports: [DatePipe, SectionComponent, CardComponent, ButtonComponent, ScrollRevealDirective],
+  imports: [DatePipe, SectionComponent, ButtonComponent, ScrollRevealDirective],
   templateUrl: './blog-list.component.html',
   styleUrl: './blog-list.component.scss',
 })

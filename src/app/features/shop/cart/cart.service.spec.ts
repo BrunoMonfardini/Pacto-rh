@@ -4,7 +4,7 @@ import { Product } from '../../../core/models';
 
 function buildProduct(overrides: Partial<Product> = {}): Product {
   return {
-    id: 1,
+    id: '1',
     slug: 'ebook-lideranca',
     name: 'E-book de Liderança',
     description: '',
@@ -80,8 +80,8 @@ describe('CartService', () => {
   });
 
   it('esvazia o carrinho', () => {
-    service.add(buildProduct({ id: 1 }));
-    service.add(buildProduct({ id: 2 }));
+    service.add(buildProduct({ id: '1' }));
+    service.add(buildProduct({ id: '2' }));
 
     service.clear();
 
@@ -89,8 +89,8 @@ describe('CartService', () => {
   });
 
   it('calcula o subtotal somando produtos distintos', () => {
-    service.add(buildProduct({ id: 1, price: 4700 }));
-    service.add(buildProduct({ id: 2, price: 9900 }), 2);
+    service.add(buildProduct({ id: '1', price: 4700 }));
+    service.add(buildProduct({ id: '2', price: 9900 }), 2);
 
     expect(service.subtotal()).toBe(4700 + 9900 * 2);
   });
@@ -101,6 +101,6 @@ describe('CartService', () => {
     const restored = new CartService();
 
     expect(restored.items()).toHaveLength(1);
-    expect(restored.items()[0].product.id).toBe(1);
+    expect(restored.items()[0].product.id).toBe('1');
   });
 });

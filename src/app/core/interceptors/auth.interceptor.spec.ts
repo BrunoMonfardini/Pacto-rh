@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideRouter } from '@angular/router';
+import { Router, provideRouter } from '@angular/router';
 import { authInterceptor } from './auth.interceptor';
 import { TokenService } from '../services/token.service';
 import { AuthService } from '../services/auth.service';
@@ -45,7 +45,7 @@ describe('authInterceptor', () => {
     req.flush({});
   });
 
-  it('desloga o usuário quando a resposta é 401', () => {
+  it('desloga o usuário quando a resposta é 401 com um token expirado anexado', () => {
     tokenService.setTokens({ accessToken: 'expired', refreshToken: 'def456' });
     const authService = TestBed.inject(AuthService);
 
@@ -56,5 +56,20 @@ describe('authInterceptor', () => {
 
     expect(authService.isAuthenticated()).toBe(false);
     expect(tokenService.getAccessToken()).toBeNull();
+  });
+
+  it('não desloga em um 401 sem token — ex: senha errada no login', () => {
+    // Sem sessão: authService.logout() navegaria para home, o que atrapalharia
+    // o formulário de login (que já trata esse erro sozinho).
+    const authService = TestBed.inject(AuthService);
+    const navigateSpy = vi.spyOn(TestBed.inject(Router), 'navigate');
+
+    http.post('/auth/login', { email: 'a@a.com', password: 'errada' }).subscribe({ error: () => {} });
+
+    const req = httpMock.expectOne('/auth/login');
+    req.flush({ message: 'Credenciais inválidas' }, { status: 401, statusText: 'Unauthorized' });
+
+    expect(navigateSpy).not.toHaveBeenCalled();
+    expect(authService.isAuthenticated()).toBe(false);
   });
 });
