@@ -1,0 +1,55 @@
+<app-page-hero
+  tag="Teste comportamental"
+  title="Descubra seu perfil comportamental"
+  subtitle="Uma ferramenta simples e objetiva para entender como você se comunica, decide e trabalha em equipe."
+>
+  <app-button [link]="ROUTES.contato" variant="primary" size="lg">Iniciar teste</app-button>
+</app-page-hero>
+
+<app-section variant="white" padding="sm">
+  <div class="disc-intro" appScrollReveal>
+    <p>
+      O DISC é um modelo de perfil comportamental que organiza a forma como as pessoas agem em quatro
+      dimensões: Dominância, Influência, Estabilidade e Conformidade. Não existe perfil certo ou errado —
+      cada um tem forças diferentes, e conhecê-las ajuda times e indivíduos a se comunicarem melhor.
+    </p>
+  </div>
+</app-section>
+
+<app-section>
+  <app-section-title
+    title="Os quatro perfis"
+    subtitle="Cada pessoa tem um pouco de cada dimensão, com uma ou duas predominando."
+  />
+
+  <div class="grid-4">
+    @for (profile of profiles; track profile.letter; let i = $index) {
+      <app-card class="disc-card" appScrollReveal [revealDelay]="i * 80">
+        <span class="disc-card__letter">{{ profile.letter }}</span>
+        <h3 class="disc-card__name">{{ profile.name }}</h3>
+        <p class="disc-card__text">{{ profile.description }}</p>
+      </app-card>
+    }
+  </div>
+</app-section>
+
+<app-section variant="white">
+  <app-section-title title="Como funciona" subtitle="Três passos simples, do início ao seu resultado." />
+
+  <div class="grid-3">
+    @for (step of steps; track step.number) {
+      <div class="disc-step">
+        <span class="disc-step__number">{{ step.number }}</span>
+        <h3 class="disc-step__title">{{ step.title }}</h3>
+        <p class="disc-step__text">{{ step.description }}</p>
+      </div>
+    }
+  </div>
+</app-section>
+
+<app-banner
+  title="Pronto para se conhecer melhor?"
+  subtitle="Fale com a gente e saiba como aplicar o DISC no seu desenvolvimento ou na sua equipe."
+  ctaLabel="Falar com a equipe"
+  [ctaLink]="ROUTES.contato"
+/>

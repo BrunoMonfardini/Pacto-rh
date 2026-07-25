@@ -1,0 +1,13 @@
+<app-page-hero
+  tag="Loja PactoRH"
+  title="Cursos, e-books e mentorias para o seu desenvolvimento"
+  subtitle="Conteúdos práticos, criados pela PactoRH, para elevar a sua performance e a da sua equipe."
+/>
+
+<app-section>
+  <div class="grid-3">
+    @for (product of products(); track product.slug; let i = $index) {
+      <app-store-product-card [product]="product" appScrollReveal [revealDelay]="(i % 3) * 80" />
+    }
+  </div>
+</app-section>

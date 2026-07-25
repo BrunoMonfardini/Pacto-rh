@@ -10,17 +10,28 @@
 
     <nav class="header__nav">
       @for (item of navItems; track item.label) {
-        <a
-          [routerLink]="item.route"
-          [fragment]="item.fragment"
-          class="nav-link"
-        >{{ item.label }}</a>
+        @if (item.children) {
+          <app-dropdown-menu>
+            <span trigger>{{ item.label }}</span>
+            <div panel>
+              @for (child of item.children; track child.label) {
+                <a [routerLink]="child.route" class="dropdown__link">{{ child.label }}</a>
+              }
+            </div>
+          </app-dropdown-menu>
+        } @else {
+          <a
+            [routerLink]="item.route"
+            [fragment]="item.fragment"
+            class="nav-link"
+          >{{ item.label }}</a>
+        }
       }
     </nav>
 
     <div class="header__auth">
       @if (isAuthenticated()) {
-        <span class="header__user">Olá, {{ currentUser()?.name }}</span>
+        <span class="header__user">Olá, {{ firstName() }}</span>
         <app-button variant="outline-blue" size="sm" (clicked)="logout()">Sair</app-button>
       } @else {
         <a [routerLink]="ROUTES.login" class="nav-link">Entrar</a>
@@ -45,17 +56,28 @@
   <nav class="mobile-menu" [class.mobile-menu--open]="isMobileOpen()">
     <div class="container">
       @for (item of navItems; track item.label) {
-        <a
-          [routerLink]="item.route"
-          [fragment]="item.fragment"
-          class="mobile-menu__link"
-          (click)="closeMobile()"
-        >{{ item.label }}</a>
+        @if (item.children) {
+          <span class="mobile-menu__group-label">{{ item.label }}</span>
+          @for (child of item.children; track child.label) {
+            <a
+              [routerLink]="child.route"
+              class="mobile-menu__link mobile-menu__link--child"
+              (click)="closeMobile()"
+            >{{ child.label }}</a>
+          }
+        } @else {
+          <a
+            [routerLink]="item.route"
+            [fragment]="item.fragment"
+            class="mobile-menu__link"
+            (click)="closeMobile()"
+          >{{ item.label }}</a>
+        }
       }
 
       <div class="mobile-menu__auth">
         @if (isAuthenticated()) {
-          <span class="header__user">Olá, {{ currentUser()?.name }}</span>
+          <span class="header__user">Olá, {{ firstName() }}</span>
           <app-button variant="outline-blue" size="sm" [fullWidth]="true" (clicked)="logout()">Sair</app-button>
         } @else {
           <a [routerLink]="ROUTES.login" class="mobile-menu__link" (click)="closeMobile()">Entrar</a>

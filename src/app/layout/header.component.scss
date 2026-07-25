@@ -8,9 +8,20 @@
   backdrop-filter: saturate(180%) blur(8px);
   border-bottom: 1px solid var(--color-border-light);
 
+  // Um grid de 3 colunas (auto 1fr auto) só centraliza o nav dentro do
+  // espaço sobrando entre logo e auth — como esses dois têm larguras bem
+  // diferentes, o nav fica visualmente deslocado do centro real do header.
+  // Posicionamento absoluto centralizado no .header__inner resolve isso de
+  // fato: o nav fica sempre no centro exato da navbar, independente da
+  // largura de logo/auth ou do tamanho da tela. Por ficar fora do fluxo,
+  // esse posicionamento não reserva espaço — por isso o nav horizontal só
+  // aparece a partir de 1024px, faixa em que sempre cabe sem sobrepor
+  // logo/auth (abaixo disso entra o menu mobile, ver .mobile-menu).
   &__inner {
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 100%;
     gap: var(--space-6);
   }
@@ -28,12 +39,15 @@
   }
 
   &__nav {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     gap: var(--space-2);
-    margin: 0 auto;
 
-    @media (max-width: 768px) { display: none; }
+    @media (max-width: 1024px) { display: none; }
   }
 
   &__auth {
@@ -41,7 +55,7 @@
     align-items: center;
     gap: var(--space-3);
 
-    @media (max-width: 768px) { display: none; }
+    @media (max-width: 1024px) { display: none; }
   }
 
   &__user {
@@ -58,12 +72,11 @@
     gap: 5px;
     width: 32px;
     height: 32px;
-    margin-left: auto;
     background: none;
     border: none;
     cursor: pointer;
 
-    @media (max-width: 768px) { display: flex; }
+    @media (max-width: 1024px) { display: flex; }
 
     span {
       display: block;
@@ -100,6 +113,25 @@
   }
 }
 
+// Links dentro do painel do app-dropdown-menu (ver dropdown-menu.component.scss)
+.dropdown__link {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-heading);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--transition), background var(--transition);
+
+  &:hover {
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+  }
+}
+
 // Mobile menu
 .mobile-menu {
   background: var(--color-bg-white);
@@ -109,7 +141,7 @@
   transition: max-height 0.3s ease;
   display: none;
 
-  @media (max-width: 768px) { display: block; }
+  @media (max-width: 1024px) { display: block; }
 
   &--open { max-height: 560px; }
 
@@ -131,6 +163,23 @@
     transition: color var(--transition);
 
     &:hover { color: var(--color-primary); }
+
+    &--child {
+      padding-left: var(--space-4);
+      font-weight: 400;
+      color: var(--color-text-light);
+    }
+  }
+
+  &__group-label {
+    display: block;
+    padding-top: var(--space-3);
+    font-family: var(--font-heading);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
   }
 
   &__auth {

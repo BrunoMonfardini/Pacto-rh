@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ScrollRevealDirective } from '../../../shared/directives/scroll-reveal.directive';
 import { ButtonComponent } from '../../../shared/components/button.component';
+import { SectionTitleComponent } from '../../../shared/components/section-title.component';
 import { ROUTES } from '../../../shared/constants/routes.constants';
 
 interface Audience {
@@ -16,7 +17,7 @@ interface Audience {
 @Component({
   selector: 'app-audience-split',
   standalone: true,
-  imports: [ScrollRevealDirective, ButtonComponent],
+  imports: [ScrollRevealDirective, ButtonComponent, SectionTitleComponent],
   templateUrl: './audience-split.component.html',
   styleUrl: './audience-split.component.scss',
 })

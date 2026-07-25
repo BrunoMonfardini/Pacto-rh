@@ -1,0 +1,23 @@
+.banner {
+  padding-block: var(--space-16);
+  background: var(--color-primary);
+}
+
+.banner__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.banner__title {
+  color: #fff;
+  font-size: clamp(var(--fs-xl), 3vw, var(--fs-2xl));
+  margin-bottom: var(--space-2);
+}
+
+.banner__subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 480px;
+}

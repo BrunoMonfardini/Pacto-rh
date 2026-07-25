@@ -8,6 +8,7 @@ export const ROUTES = {
   contato: '/contato',
   blog: '/blog',
   produtos: '/produtos',
+  loja: '/loja',
   login: '/auth/login',
   register: '/auth/register',
 } as const;

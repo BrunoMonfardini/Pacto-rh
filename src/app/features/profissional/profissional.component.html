@@ -1,0 +1,42 @@
+<div class="theme-red">
+
+  <app-page-hero
+    theme="red"
+    tag="Para Profissionais"
+    title="Ferramentas para acelerar seu desenvolvimento"
+    subtitle="Autoconhecimento, mentorias e conteúdos práticos para impulsionar sua carreira."
+  >
+    <app-button [link]="ROUTES.disc" variant="red" size="lg">Fazer o teste DISC</app-button>
+  </app-page-hero>
+
+  <app-section variant="white">
+    <div appScrollReveal>
+      <app-section-title
+        tag="Conteúdos"
+        title="O que preparamos para você"
+        subtitle="Recursos pensados para cada etapa da sua jornada de desenvolvimento pessoal e profissional."
+      />
+    </div>
+
+    <div class="grid-3">
+      @for (item of solutions; track item.title; let i = $index) {
+        <app-card [hoverable]="true" appScrollReveal [revealDelay]="i * 80">
+          <div class="solution-card__icon">
+            <i class="fas" [class]="item.icon"></i>
+          </div>
+          <h3 class="solution-card__title">{{ item.title }}</h3>
+          <p class="solution-card__text">{{ item.description }}</p>
+        </app-card>
+      }
+    </div>
+  </app-section>
+
+  <app-banner
+    theme="red"
+    title="Pronto para investir no seu desenvolvimento?"
+    subtitle="Conheça nossas mentorias, cursos e o teste DISC — dê o próximo passo na sua carreira."
+    ctaLabel="Falar com a equipe"
+    [ctaLink]="ROUTES.contato"
+  />
+
+</div>

@@ -1,0 +1,14 @@
+<article class="card card--hoverable product-card">
+  <div class="product-card__image">
+    <i class="fas" [class]="product().icon"></i>
+  </div>
+
+  <span class="product-card__category">{{ product().category }}</span>
+  <h3 class="product-card__name">{{ product().name }}</h3>
+  <p class="product-card__text">{{ product().shortDescription }}</p>
+
+  <app-button class="product-card__cta" [link]="'/loja/' + product().slug" variant="outline-blue" size="sm">
+    Saiba mais
+    <i class="fas fa-arrow-right"></i>
+  </app-button>
+</article>

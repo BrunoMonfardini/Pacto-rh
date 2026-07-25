@@ -1,0 +1,42 @@
+<div class="theme-blue">
+
+  <app-page-hero
+    theme="blue"
+    tag="Para Empresas"
+    title="Treinamento e desenvolvimento que movem resultado"
+    subtitle="Programas sob medida para elevar performance, engajamento e maturidade de gestão da sua equipe."
+  >
+    <app-button [link]="ROUTES.contato" variant="primary" size="lg">Falar com um consultor</app-button>
+  </app-page-hero>
+
+  <app-section variant="white">
+    <div appScrollReveal>
+      <app-section-title
+        tag="Soluções"
+        title="O que oferecemos para sua empresa"
+        subtitle="Da consultoria estratégica ao treinamento em sala — programas construídos junto com você."
+      />
+    </div>
+
+    <div class="grid-3">
+      @for (item of solutions; track item.title; let i = $index) {
+        <app-card [hoverable]="true" appScrollReveal [revealDelay]="i * 80">
+          <div class="solution-card__icon">
+            <i class="fas" [class]="item.icon"></i>
+          </div>
+          <h3 class="solution-card__title">{{ item.title }}</h3>
+          <p class="solution-card__text">{{ item.description }}</p>
+        </app-card>
+      }
+    </div>
+  </app-section>
+
+  <app-banner
+    theme="blue"
+    title="Pronto para elevar a performance da sua equipe?"
+    subtitle="Fale com um de nossos consultores e monte um programa sob medida para sua empresa."
+    ctaLabel="Falar com um consultor"
+    [ctaLink]="ROUTES.contato"
+  />
+
+</div>

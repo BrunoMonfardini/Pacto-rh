@@ -1,0 +1,53 @@
+@if (loading()) {
+  <div class="product-detail__state">
+    <p>Carregando...</p>
+  </div>
+} @else {
+  @if (product(); as product) {
+    <section class="product-banner">
+      <div class="container product-banner__inner">
+        <a [routerLink]="ROUTES.loja" class="product-banner__back">
+          <i class="fas fa-arrow-left"></i> Voltar para a loja
+        </a>
+        <span class="product-banner__category">{{ product.category }}</span>
+        <h1 class="product-banner__title">{{ product.name }}</h1>
+        <div class="product-banner__image">
+          <i class="fas" [class]="product.icon"></i>
+        </div>
+      </div>
+    </section>
+
+    <app-section variant="white">
+      <div class="product-detail__grid">
+        <div class="product-detail__main">
+          <h2 class="product-detail__heading">Sobre o produto</h2>
+          <p class="product-detail__description">{{ product.description }}</p>
+
+          <h2 class="product-detail__heading">Benefícios</h2>
+          <ul class="product-detail__benefits">
+            @for (benefit of product.benefits; track benefit) {
+              <li><i class="fas fa-check"></i><span>{{ benefit }}</span></li>
+            }
+          </ul>
+        </div>
+
+        <aside class="product-detail__aside">
+          <h3 class="product-detail__aside-title">Público-alvo</h3>
+          <p>{{ product.targetAudience }}</p>
+        </aside>
+      </div>
+    </app-section>
+
+    <app-banner
+      [title]="'Interessado em ' + product.name + '?'"
+      subtitle="Fale com a gente para saber mais sobre conteúdo, formato e disponibilidade."
+      ctaLabel="Falar com a equipe"
+      [ctaLink]="ROUTES.contato"
+    />
+  } @else {
+    <div class="product-detail__state">
+      <p>Produto não encontrado.</p>
+      <a [routerLink]="ROUTES.loja">Voltar para a loja</a>
+    </div>
+  }
+}

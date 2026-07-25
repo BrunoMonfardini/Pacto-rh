@@ -1,0 +1,60 @@
+.disc-intro {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: var(--fs-md);
+}
+
+.disc-card {
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+}
+
+.disc-card__letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-border);
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.disc-card__name {
+  font-size: var(--fs-lg);
+}
+
+.disc-card__text {
+  color: var(--color-text-light);
+  font-size: var(--fs-sm);
+}
+
+.disc-step {
+  text-align: center;
+  padding: var(--space-6);
+}
+
+.disc-step__number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  color: var(--color-border);
+  margin-bottom: var(--space-2);
+}
+
+.disc-step__title {
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-2);
+}
+
+.disc-step__text {
+  color: var(--color-text-light);
+  font-size: var(--fs-sm);
+}

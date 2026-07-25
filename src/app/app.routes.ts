@@ -67,6 +67,18 @@ export const routes: Routes = [
         title: 'Produtos — PactoRH',
       },
       {
+        path: 'loja',
+        loadComponent: () =>
+          import('./features/loja/products/product-list/product-list.component').then(m => m.ProductListComponent),
+        title: 'Loja — PactoRH',
+      },
+      {
+        path: 'loja/:slug',
+        loadComponent: () =>
+          import('./features/loja/products/product-detail/product-detail.component').then(m => m.ProductDetailComponent),
+        title: 'Loja — PactoRH',
+      },
+      {
         path: 'auth',
         loadChildren: () => import('./features/auth/auth.routes').then(m => m.authRoutes),
       },
